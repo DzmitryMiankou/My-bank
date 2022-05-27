@@ -1,0 +1,97 @@
+:root {
+    box-sizing: border-box;
+    --main-color: rgb(0, 0, 0);
+    --main-color-backgraund: aliceblue;
+}
+
+*,
+::before,
+::after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--main-color-backgraund);
+    display: grid;
+    grid-template-areas: "date"
+        "money"
+        "total";
+    grid-template-rows: 150px 150px 200px;
+    justify-content: center;
+    align-content: center;
+}
+
+body>.date {
+    grid-area: date;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    justify-items: center;
+    border-bottom: 2px solid rgba(96, 148, 151, 0.395);
+}
+
+.date__bankname h1,
+p {
+    color: rgb(96, 148, 151);
+}
+
+body>.money {
+    grid-area: money;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    justify-items: center;
+    border-bottom: 2px solid rgb(96, 148, 151, 0.395);
+
+}
+
+body>.total {
+    grid-area: total;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.total__end {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+.total__end-button {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+}
+
+.total__information {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+}
+
+select {
+    border: none;
+    background-color: rgba(84, 136, 136, 0.158);
+    box-shadow: rgb(102, 102, 102) 1px 1px 3px;
+}
+
+button {
+    padding: 2% 8%;
+    border: none;
+    background-color: rgba(84, 136, 136, 0.158);
+    box-shadow: rgb(102, 102, 102) 1px 1px 3px;
+}
+
+button:hover {
+    background-color: rgba(191, 191, 255, 0.31);
+    padding: 4% 10%;
+    box-shadow: none;
+    transition: 0.1s;
+}
+
+input {
+    width: 100px;
+}

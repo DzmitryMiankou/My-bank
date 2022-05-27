@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <link rel="icon" href="" type="image/x-icon" />
+    <title>My bank</title>
+    <!--my style-->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <!--my script-->
+    <script type="module" src="js/script.js"></script>
+  </head>
+  <body>
+    <div class="date">
+      <form class="date__day">
+        <label for="bday">Дата:</label>
+        <input type="text" placeholder="ДАТА" />
+      </form>
+      <button name="send">ВВОД КУРСОВ</button>
+      <div class="date__bankname">
+        <h1>МОЙ БАНК</h1>
+      </div>
+    </div>
+    <div class="money">
+      <form class="money__money">
+        <p>Сумма:</p>
+        <input type="text" placeholder="" />
+        <select>
+          <option>USD</option>
+          <option>BYN</option>
+          <option>RUB</option>
+        </select>
+      </form>
+      <form class="money__kurs">
+        <p>Курс:</p>
+        <input type="text" placeholder="" />
+      </form>
+      <form class="money__byrub">
+        <p>В BYN</p>
+        <input type="text" placeholder="" />
+      </form>
+    </div>
+    <div class="total">
+      <div class="total__end">
+        <form class="total__end-button">
+          <p>ИТОГО:</p>
+          <button name="send">BYN</button>
+          <button name="send">$</button>
+          <button name="send">€</button>
+        </form>
+        <input type="text" placeholder="" />
+      </div>
+      <form class="total__information">
+        <button name="send">ГРАФИК</button>
+        <button name="send">СПРАВКА</button>
+        <button name="send">ЗАПОМНИТЬ</button>
+      </form>
+    </div>
+  </body>
+</html>
