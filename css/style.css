@@ -19,7 +19,6 @@ body {
         "total";
     grid-template-rows: 150px 150px 200px;
     justify-content: center;
-    align-content: center;
 }
 
 body>.date {
