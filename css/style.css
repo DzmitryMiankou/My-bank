@@ -1,6 +1,6 @@
 :root {
     box-sizing: border-box;
-    --main-color: rgb(0, 0, 0);
+    --color-text: rgb(0, 82, 82);;
     --main-color-backgraund: aliceblue;
 }
 
@@ -32,7 +32,7 @@ body>.date {
 }
 
 .date__bankname h1,
-p {
+label {
     color: rgb(96, 148, 151);
 }
 
@@ -83,10 +83,11 @@ button {
     border: none;
     background-color: rgba(84, 136, 136, 0.158);
     box-shadow: rgb(102, 102, 102) 1px 1px 3px;
+    color: var(--color-text)
 }
 
 button:hover {
-    background-color: rgba(191, 191, 255, 0.31);
+    background-color: rgba(21, 119, 119, 0.288);
     padding: 4% 10%;
     box-shadow: none;
     transition: 0.1s;
@@ -94,4 +95,9 @@ button:hover {
 
 input {
     width: 100px;
+    border: solid 2px rgba(96, 148, 151, 0.622);
+    color: var(--color-text)
+}
+.date__day input {
+    width: 120px;
 }

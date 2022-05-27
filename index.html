@@ -7,7 +7,6 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1"
     />
-    <link rel="icon" href="" type="image/x-icon" />
     <title>My bank</title>
     <!--my style-->
     <link rel="stylesheet" href="css/style.css" />
@@ -17,9 +16,9 @@
   </head>
   <body>
     <div class="date">
-      <form class="date__day">
-        <label for="bday">Дата:</label>
-        <input type="text" placeholder="ДАТА" />
+      <form name="date" class="date__day">
+        <label for="date">Дата:</label>
+        <input id="date" type="date" value="" />
       </form>
       <button name="send">ВВОД КУРСОВ</button>
       <div class="date__bankname">
@@ -28,7 +27,7 @@
     </div>
     <div class="money">
       <form class="money__money">
-        <p>Сумма:</p>
+        <label>Сумма:</label>
         <input type="text" placeholder="" />
         <select>
           <option>USD</option>
@@ -37,18 +36,18 @@
         </select>
       </form>
       <form class="money__kurs">
-        <p>Курс:</p>
+        <label>Курс:</label>
         <input type="text" placeholder="" />
       </form>
       <form class="money__byrub">
-        <p>В BYN</p>
+        <label>В BYN</label>
         <input type="text" placeholder="" />
       </form>
     </div>
     <div class="total">
       <div class="total__end">
         <form class="total__end-button">
-          <p>ИТОГО:</p>
+          <label>ИТОГО:</label>
           <button name="send">BYN</button>
           <button name="send">$</button>
           <button name="send">€</button>

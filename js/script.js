@@ -1,3 +1,4 @@
 `use script`
-let now = new Date();
-console.log( now );
+document.addEventListener("DOMContentLoaded", () => {
+const dateToDay = document.querySelector('input[type="date"]').valueAsDate = new Date();;
+});
