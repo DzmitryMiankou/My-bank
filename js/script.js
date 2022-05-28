@@ -1,12 +1,15 @@
 `use script`
-
+    const today = new Date();
+    const dateSrc = today.toLocaleString('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric' });
 document.addEventListener("DOMContentLoaded", () => {
     /*this is today time*/
     const dateToDay = document.querySelector('input[type="date"]').valueAsDate = new Date ();
     const day = dateToDay.setHours(0, 0, 0, 0);
+    
+
 
     /*DOM information*/
-    const buttons = document.querySelector(`button`);
+    const buttons = document.querySelector(`div`);
     const formDate = document.forms["date"];
 
     /*settings DateProcessing*/
@@ -40,8 +43,8 @@ class DateProcessing {
                 case "date__input"://Ввод курса
                     this.chekDay();
                     break;
-                case "newButton"://удаление окна
-                    alert(`hi`);
+                case "newButton"://Delete window
+                    newDiv.remove();
                     break;
             }
         });
@@ -70,7 +73,7 @@ class DateProcessing {
         const newP = document.createElement("p");
         newDiv.append(newP);
 
-        const textP = document.createTextNode(this.textP);
+        const textP = document.createTextNode(`${this.textP} ${dateSrc}`);
         newP.append(textP);
 
         const newForm = document.createElement("form");

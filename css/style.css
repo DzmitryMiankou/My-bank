@@ -20,7 +20,9 @@ body {
     grid-template-rows: 150px 150px 200px;
     justify-content: center;
 }
-
+p, button, label {
+    font-size: 0.8rem;
+}
 body>.date {
     grid-area: date;
     display: grid;
@@ -33,6 +35,7 @@ body>.date {
 .date__bankname h1,
 label {
     color: rgb(96, 148, 151);
+    text-align: center;
 }
 
 body>.money {
