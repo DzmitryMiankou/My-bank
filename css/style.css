@@ -103,11 +103,20 @@ input {
 #newDiv {
     position: absolute;
     top: 4%;
-    padding: 4%;
+    height: 350px;
+    padding: 0% 3% 0% 3%;
     background-color:var(--main-color-backgraund);
     box-shadow:rgb(92, 92, 92) 0px 1px 8px;
+    text-align: center;
+    color: var(--color-text);
 }
-textarea {
+#newDiv h2, #newDiv p {
+    margin:1% 0% 1% 0%;
+}
+#newButton {
+    margin: 5%;
+}
+#newDiv textarea {
     max-height: 200px;
     max-width: 200px;
     height: 200px;
