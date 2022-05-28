@@ -15,8 +15,8 @@ body {
     background-color: var(--main-color-backgraund);
     display: grid;
     grid-template-areas: "date"
-        "money"
-        "total";
+                         "money"
+                         "total";
     grid-template-rows: 150px 150px 200px;
     justify-content: center;
 }
@@ -99,4 +99,17 @@ input {
 }
 .date__day input {
     width: 112px;
+}
+#newDiv {
+    position: absolute;
+    top: 4%;
+    padding: 4%;
+    background-color:var(--main-color-backgraund);
+    box-shadow:rgb(92, 92, 92) 0px 1px 8px;
+}
+textarea {
+    max-height: 200px;
+    max-width: 200px;
+    height: 200px;
+    width: 200px;
 }
