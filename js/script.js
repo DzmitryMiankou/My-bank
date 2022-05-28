@@ -44,6 +44,8 @@ class DateProcessing {
                     this.chekDay();
                     break;
                 case "newButton"://Delete window
+                    let val = document.getElementById("newtextar").value;
+                    console.log(val);
                     newDiv.remove();
                     break;
             }
