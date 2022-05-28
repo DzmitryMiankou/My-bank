@@ -42,9 +42,10 @@ body>.money {
     align-items: center;
     justify-items: center;
     border-bottom: 2px solid rgb(96, 148, 151, 0.395);
-
 }
-
+.money form ,.date form {
+    text-align: center;
+}
 body>.total {
     grid-area: total;
     display: grid;
