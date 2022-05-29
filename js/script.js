@@ -54,7 +54,7 @@ class DateProcessing {
                     add.before(div2);
                     break;
                 case "dellist"://Delete list
-                const dell = document.getElementById("money__money");
+                    const dell = document.getElementById("money__money");
                     dell.remove();
                     break;
             }
