@@ -17,7 +17,7 @@ body {
     grid-template-areas: "date"
                          "money"
                          "total";
-    grid-template-rows: 100px 200px 100px;
+    grid-template-rows: auto;
     justify-content: center;
 }
 p, button, label {
@@ -46,10 +46,12 @@ body>.money {
     border-bottom: 2px solid rgb(96, 148, 151, 0.395);
 }
 .money__money {
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(5, 1fr);
     align-items: center;
     height: 50px;
+    gap: 3%;
+
 }
 .money form ,.date form {
     text-align: center;
@@ -58,8 +60,7 @@ body>.money {
     display: flex;
     margin-right: auto;
     align-self: center;
-    width: 300px;
-    
+        
 }
 .money__addlist label {
     width: 110px;
@@ -161,6 +162,9 @@ input {
     font-size: 1rem;
     font-weight: 700;
     text-align: center;
+    height: 20px;
+    width: 20px;
+    padding: 0;
 }
 #dellist:hover {
     color: rgb(84, 136, 136);

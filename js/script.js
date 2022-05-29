@@ -51,7 +51,7 @@ class DateProcessing {
                 case "addlist"://Delete window
                     const add = document.querySelector(".money__money");
                     let div2 = add.cloneNode(true);
-                     let newlist = add.before(div2);
+                    add.before(div2);
                     break;
                 case "dellist"://Delete window
                     add.remove();
