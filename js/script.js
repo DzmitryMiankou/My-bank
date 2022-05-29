@@ -53,8 +53,9 @@ class DateProcessing {
                     let div2 = add.cloneNode(true);
                     add.before(div2);
                     break;
-                case "dellist"://Delete window
-                    add.remove();
+                case "dellist"://Delete list
+                const dell = document.getElementById("money__money");
+                    dell.remove();
                     break;
             }
         });
