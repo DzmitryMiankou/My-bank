@@ -26,23 +26,33 @@
       </div>
     </div>
     <div class="money">
-      <form class="money__money">
-        <label>Сумма:</label>
-        <input type="text" placeholder="" />
-        <select>
-          <option>USD</option>
-          <option>BYN</option>
-          <option>RUB</option>
-        </select>
-      </form>
-      <form class="money__kurs">
-        <label>Курс:</label>
-        <input type="text" placeholder="" />
-      </form>
-      <form class="money__byrub">
-        <label>в BYN</label>
-        <input type="text" placeholder="" />
-      </form>
+      <div class="money__addlist">
+        <button id="addlist">+</button>
+        <label id="addlist">ДОБАВИТЬ ВАЛЮТУ</label>
+      </div>
+      <div class="money__money">
+        <form>
+          <label>Сумма:</label>
+          <input type="text" placeholder="" />
+        </form>
+        <form class="usd">
+          <label>Вид:</label>
+          <select>
+            <option>USD</option>
+            <option>BYN</option>
+            <option>RUB</option>
+          </select>
+        </form>
+        <form class="money__kurs">
+          <label>Курс:</label>
+          <input type="text" placeholder="" />
+        </form>
+        <form class="money__byrub">
+          <label>в BYN</label>
+          <input type="text" placeholder="" />
+        </form>
+        <button id="dellist">x</button>
+      </div>
     </div>
     <div class="total">
       <div class="total__end">

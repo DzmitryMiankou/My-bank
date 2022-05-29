@@ -17,7 +17,7 @@ body {
     grid-template-areas: "date"
                          "money"
                          "total";
-    grid-template-rows: 150px 150px 200px;
+    grid-template-rows: 100px 200px 100px;
     justify-content: center;
 }
 p, button, label {
@@ -40,15 +40,43 @@ label {
 
 body>.money {
     grid-area: money;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: center;
-    justify-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     border-bottom: 2px solid rgb(96, 148, 151, 0.395);
+}
+.money__money {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    height: 50px;
 }
 .money form ,.date form {
     text-align: center;
 }
+.money__addlist {
+    display: flex;
+    margin-right: auto;
+    align-self: center;
+    width: 300px;
+    
+}
+.money__addlist label {
+    width: 110px;
+    font-size: 0.6rem;
+    color: rgb(112, 155, 112);
+}
+.money__addlist button {
+    border-radius: 50%;
+    padding: 2px;
+    font-size: 0.8rem;
+    width: 22px;
+    background-color:rgba(172, 255, 172, 0.564);
+}
+.money__addlist button:hover {
+    padding: 2px;
+}
+
 body>.total {
     grid-area: total;
     display: grid;
@@ -125,4 +153,15 @@ input {
     max-width: 200px;
     height: 200px;
     width: 200px;
+}
+#dellist {
+    background:transparent;
+    box-shadow: none;
+    color: red;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+}
+#dellist:hover {
+    color: rgb(84, 136, 136);
 }

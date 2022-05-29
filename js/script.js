@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /*DOM information*/
-    const buttons = document.querySelector(`div`);
+    const buttons = document.querySelector(`body`);
     const formDate = document.forms["date"];
 
     /*settings DateProcessing*/
@@ -47,6 +47,14 @@ class DateProcessing {
                     let val = document.getElementById("newtextar").value;
                     console.log(val);
                     newDiv.remove();
+                    break;
+                case "addlist"://Delete window
+                    const add = document.querySelector(".money__money");
+                    let div2 = add.cloneNode(true);
+                     let newlist = add.before(div2);
+                    break;
+                case "dellist"://Delete window
+                    add.remove();
                     break;
             }
         });
