@@ -112,3 +112,5 @@ const urladdr = `https://www.nbrb.by/api/exrates/rates?periodicity=0`;
 let response = await fetch(urladdr);
 let commits = await response.json();
 console.log(commits[0].Cur_OfficialRate);
+let val = document.getElementById("reviationadd").value;
+console.log(val);
