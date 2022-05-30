@@ -124,7 +124,7 @@ let textbox = document.getElementById(`reviationadd`)
             const list = document.getElementById("kurs").value = st;            
             break;
         case `RUB`:
-            alert(`hiiiii`);
+            document.getElementById("kurs").value = `st`; 
             break;
     }
 };
