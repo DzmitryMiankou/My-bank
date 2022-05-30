@@ -106,3 +106,9 @@ class DateProcessing {
         button.setAttribute(`id`,`newButton`);
     }
 } //The end______________________________DateProcessing______________________________________
+
+
+const urladdr = `https://www.nbrb.by/api/exrates/rates?periodicity=0`;
+let response = await fetch(urladdr);
+let commits = await response.json();
+console.log(commits[0].Cur_OfficialRate);

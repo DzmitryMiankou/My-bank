@@ -35,13 +35,16 @@
           <label>Сумма:</label>
           <input type="text" placeholder="" />
         </form>
-        <form class="usd">
-          <label>Вид:</label>
-          <select type="select-multiple">
-            <option>USD</option>
-            <option>BYN</option>
-            <option>RUB</option>
-          </select>
+        <form class="reviation">
+          <label for="reviation">Вид:</label>
+          <input list="reviation" id="reviationadd" name="reviationadd" />
+          <datalist id="reviation">
+            <option value="USD"></option>
+            <option value="EUR"></option>
+            <option value="PLN"></option>
+            <option value="CNY"></option>
+            <option value="RUB"></option>
+          </datalist>
         </form>
         <form class="money__kurs">
           <label>Курс:</label>

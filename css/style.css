@@ -81,6 +81,7 @@ body>.total {
     grid-area: total;
     display: grid;
     grid-template-rows: repeat(2, 1fr);
+    height: 120px;
 }
 
 .total__end {
@@ -149,10 +150,12 @@ input {
     margin: 5%;
 }
 #newDiv textarea {
-    max-height: 200px;
-    max-width: 200px;
+    
     height: 200px;
     width: 200px;
+    resize: none;
+    border: none;
+    background-color:rgba(227, 227, 227, 0.696);
 }
 #dellist {
     background:transparent;
