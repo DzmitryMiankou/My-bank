@@ -107,11 +107,33 @@ class DateProcessing {
     }
 } //The end______________________________DateProcessing______________________________________
 
-
-const urladdr = `https://www.nbrb.by/api/exrates/rates?periodicity=0`;
-let response = await fetch(urladdr);
+/*let response = await fetch(`https://www.nbrb.by/api/exrates/rates?periodicity=0`);
 let commits = await response.json();
-let st = commits[0].Cur_OfficialRate;
+let st = commits[0].Cur_Abbreviation;
 console.log(st);
-let val = document.getElementById("reviationadd").value;
-console.log(val);
+*/
+/*let textbox = document.getElementById(`reviationadd`);
+textbox.addEventListener("keydown", (event) => {
+    console.log(event.key);
+});*/
+let textbox = document.getElementById(`reviationadd`)
+ textbox.oninput = function() {
+    let val = textbox.value;
+    switch (val) {
+        case `USD`:
+            const list = document.getElementById("kurs").value = st;            
+            break;
+        case `RUB`:
+            alert(`hiiiii`);
+            break;
+    }
+};
+
+let listPromis = await fetch(`https://www.nbrb.by/api/exrates/rates?periodicity=0`)
+let commits = await listPromis.json();
+let st = commits[5].Cur_OfficialRate;
+console.log(typeof(st));
+console.log(st);
+
+/*
+.then((arr) => arr.forEach(element => console.log(element)))*/

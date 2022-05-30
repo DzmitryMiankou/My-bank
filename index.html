@@ -20,7 +20,7 @@
         <label for="date">Дата:</label>
         <input id="date" type="date" value="" />
       </form>
-      <button id="date__input" type="submit">ВВОД КУРСОВ</button>
+      <button id="date__input" type="button">ВВОД КУРСОВ</button>
       <div class="date__bankname">
         <h1>МОЙ БАНК</h1>
       </div>
@@ -37,7 +37,12 @@
         </form>
         <form class="reviation">
           <label for="reviation">Вид:</label>
-          <input list="reviation" id="reviationadd" name="reviationadd" />
+          <input
+            list="reviation"
+            id="reviationadd"
+            name="reviationadd"
+            placeholder=""
+          />
           <datalist id="reviation">
             <option value="USD"></option>
             <option value="EUR"></option>
@@ -48,7 +53,7 @@
         </form>
         <form class="money__kurs">
           <label>Курс:</label>
-          <input id="kurs" type="text" value="" />
+          <input id="kurs" type="text" placeholder="" value="" />
         </form>
         <form class="money__byrub">
           <label>в BYN</label>
