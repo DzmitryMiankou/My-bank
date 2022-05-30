@@ -111,6 +111,7 @@ class DateProcessing {
 const urladdr = `https://www.nbrb.by/api/exrates/rates?periodicity=0`;
 let response = await fetch(urladdr);
 let commits = await response.json();
-console.log(commits[0].Cur_OfficialRate);
+let st = commits[0].Cur_OfficialRate;
+console.log(st);
 let val = document.getElementById("reviationadd").value;
 console.log(val);
