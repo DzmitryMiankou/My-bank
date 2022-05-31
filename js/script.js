@@ -52,10 +52,7 @@ class DateProcessing {
                     this.generatorName();
                     break;
                 case "dellist"://Delete list
-                    let z = document.querySelector("#dellist");
-                    let d = z.parentNode.id;
-                    console.log(d);
-                    this.deleteElement(d);
+                    this.deleteElement(event);
                     break;
             }
         });
@@ -109,21 +106,15 @@ class DateProcessing {
         const add2 = document.getElementById("money")
         let chil = add2.childNodes;
         let chilLength = chil.length;
-        let idName = chilLength  -4;
+        let idName = chilLength -4;
         const add = document.querySelector(".money__money");
         let div2 = add.cloneNode(true);
-        add.after(div2);
-        add.setAttribute(`id`,`money__money` + idName);
-        /*
-        const del = document.querySelector("#dellist");
-        const dellBut = del.setAttribute(`id`,`dellist-` + idName);*/
-        
-        
+        add.before(div2);
+        add.setAttribute(`id`,`money__money ${idName}`);
     }
-    deleteElement(a) {
-        const dell = document.getElementById(a);
-        dell.remove();
-        
+    deleteElement(event) {        
+        const deleteElm = event.target.closest('.money__money');
+        deleteElm.remove();
     }
 } //The end______________________________DateProcessing______________________________________
 
@@ -152,6 +143,3 @@ let textbox = document.getElementById(`reviationadd`)
 let listPromis = await fetch(`https://www.nbrb.by/api/exrates/rates?periodicity=0`)
 let commits = await listPromis.json();
 let st = commits[5].Cur_OfficialRate;
-
-/*
-.then((arr) => arr.forEach(element => console.log(element)))*/
