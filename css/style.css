@@ -157,7 +157,7 @@ input {
     border: none;
     background-color:rgba(227, 227, 227, 0.696);
 }
-#dellist {
+.dellistBut {
     background:transparent;
     box-shadow: none;
     color: red;
@@ -169,6 +169,9 @@ input {
     padding: 0;
     margin-right: 3%;
 }
-#dellist:hover {
+.dellistBut:hover {
     color: rgb(84, 136, 136);
+    padding: 0;
+    background: transparent;
+    border-radius: 50%;
 }

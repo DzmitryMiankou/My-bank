@@ -52,7 +52,10 @@ class DateProcessing {
                     this.generatorName();
                     break;
                 case "dellist"://Delete list
-                    this.deleteElement();
+                    let z = document.querySelector("#dellist");
+                    let d = z.parentNode.id;
+                    console.log(d);
+                    this.deleteElement(d);
                     break;
             }
         });
@@ -111,11 +114,16 @@ class DateProcessing {
         let div2 = add.cloneNode(true);
         add.after(div2);
         add.setAttribute(`id`,`money__money` + idName);
+        /*
+        const del = document.querySelector("#dellist");
+        const dellBut = del.setAttribute(`id`,`dellist-` + idName);*/
+        
         
     }
-    deleteElement() {
-        const dell = document.getElementById("money__money");
+    deleteElement(a) {
+        const dell = document.getElementById(a);
         dell.remove();
+        
     }
 } //The end______________________________DateProcessing______________________________________
 
@@ -133,7 +141,7 @@ let textbox = document.getElementById(`reviationadd`)
     let val = textbox.value;
     switch (val) {
         case `USD`:
-            const list = document.getElementById("kurs").value = st;            
+            const list = document.querySelector("#kurs").value = st;            
             break;
         case `RUB`:
             document.getElementById("kurs").value = `st`; 
