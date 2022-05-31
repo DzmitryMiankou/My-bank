@@ -22,6 +22,7 @@ body {
 }
 p, button, label {
     font-size: 0.8rem;
+    color: var(--color-text);
 }
 body>.date {
     grid-area: date;
@@ -157,7 +158,7 @@ input {
     border: none;
     background-color:rgba(227, 227, 227, 0.696);
 }
-.dellistBut {
+.dellist__but {
     background:transparent;
     box-shadow: none;
     color: red;
@@ -169,7 +170,7 @@ input {
     padding: 0;
     margin-right: 3%;
 }
-.dellistBut:hover {
+.dellist__but:hover {
     color: rgb(84, 136, 136);
     padding: 0;
     background: transparent;

@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /*DOM information*/
-    const buttons = document.querySelector(`body`);
+    
     const formDate = document.forms["date"];
 
     /*settings DateProcessing*/
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });//The end_________________________DOMContentLoaded______________________________________
 
-
+const buttons = document.querySelector(`body`);
 class DateProcessing {
     constructor(button, day, formDate, textH2, textP, textButton) {
         this.button = button;
@@ -119,17 +119,9 @@ class DateProcessing {
     }
 } //The end______________________________DateProcessing______________________________________
 
-/*let response = await fetch(`https://www.nbrb.by/api/exrates/rates?periodicity=0`);
-let commits = await response.json();
-let st = commits[0].Cur_Abbreviation;
-console.log(st);
-*/
-/*let textbox = document.getElementById(`reviationadd`);
-textbox.addEventListener("keydown", (event) => {
-    console.log(event.key);
-});*/
+
 let textbox = document.querySelector(`#reviationadd`)
- textbox.oninput = function() {
+/* textbox.oninput = function() {
     let val = textbox.value;
     switch (val) {
         case `USD`:
@@ -139,7 +131,21 @@ let textbox = document.querySelector(`#reviationadd`)
             document.querySelector("#kurs").value = `st`; 
             break;
     }
-};
+};*/
+
+buttons.addEventListener("input", (event) => {
+    
+    let target = event.target;
+            switch(target.id) {
+                case "reviationadd"://Ввод курса
+                    const deleteElm = event.target.closest('#money__money');
+                    console.log(deleteElm);
+                    deleteElm.querySelector("#kurs").value = st; 
+                    break;
+            }
+        });
+
+
 
 let listPromis = await fetch(`https://www.nbrb.by/api/exrates/rates?periodicity=0`)
 let commits = await listPromis.json();
