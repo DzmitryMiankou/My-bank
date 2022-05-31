@@ -69,7 +69,7 @@ class DateProcessing {
         }
     }
     newTextWindow() {
-        const list = document.getElementById("newForm");
+        const list = document.querySelector("#newForm");
         const newDiv = document.createElement("div");
 
         const newH2 = document.createElement("h2");
@@ -103,17 +103,18 @@ class DateProcessing {
         button.setAttribute(`id`,`newButton`);
     }
     generatorName() {
-        const add2 = document.getElementById("money")
+        const add2 = document.querySelector("#money")
         let chil = add2.childNodes;
         let chilLength = chil.length;
         let idName = chilLength -4;
         const add = document.querySelector(".money__money");
         let div2 = add.cloneNode(true);
         add.before(div2);
-        add.setAttribute(`id`,`money__money ${idName}`);
+        add.setAttribute(`class`,`new__Element`);/*${idName}*/
     }
     deleteElement(event) {        
-        const deleteElm = event.target.closest('.money__money');
+        if (!event.target.closest('.new__Element')) return;
+        const deleteElm = event.target.closest('.new__Element');
         deleteElm.remove();
     }
 } //The end______________________________DateProcessing______________________________________
@@ -127,7 +128,7 @@ console.log(st);
 textbox.addEventListener("keydown", (event) => {
     console.log(event.key);
 });*/
-let textbox = document.getElementById(`reviationadd`)
+let textbox = document.querySelector(`#reviationadd`)
  textbox.oninput = function() {
     let val = textbox.value;
     switch (val) {
@@ -135,7 +136,7 @@ let textbox = document.getElementById(`reviationadd`)
             const list = document.querySelector("#kurs").value = st;            
             break;
         case `RUB`:
-            document.getElementById("kurs").value = `st`; 
+            document.querySelector("#kurs").value = `st`; 
             break;
     }
 };

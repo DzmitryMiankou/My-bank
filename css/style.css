@@ -45,7 +45,7 @@ body>.money {
     justify-content: center;
     border-bottom: 2px solid rgb(96, 148, 151, 0.395);
 }
-.money__money {
+.money__money, .new__Element {
     display: flex;
     grid-template-columns: repeat(5, 1fr);
     align-items: center;
