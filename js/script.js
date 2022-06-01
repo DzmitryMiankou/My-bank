@@ -142,15 +142,17 @@ class DateProcessing {
             parentElm.querySelector("#kurs").value = `st`; 
             break;
         }*/
-        this.as(val);
+        this.as(val, parentElm);
     }
-    as(val) {
+    as(val, parentElm) {
         async  function response() {
             let listPromis = await fetch(`https://www.nbrb.by/api/exrates/rates?periodicity=0`);
             let commits = await listPromis.json();
-            
             let obj =  commits.find(item => item.Cur_Abbreviation == val);
+            if(obj == undefined) return;
+            let el = obj.Cur_OfficialRate;
             console.log(obj);
+            parentElm.querySelector("#kurs").value = el;
         }
         response();
     }
