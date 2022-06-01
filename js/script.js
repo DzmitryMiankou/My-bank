@@ -22,9 +22,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const date = new DateProcessing(buttons, day, formDate, textH2, textP, textButton);
     date.getButt();
     date.many();
-
+   
 
 });//The end_________________________DOMContentLoaded______________________________________
+
+
+
+
 
 class DateProcessing {
     constructor(button, day, formDate, textH2, textP, textButton) {
@@ -129,7 +133,7 @@ class DateProcessing {
     checkManey(event) {
         const parentElm = event.target.closest('#money__money');
         let textbox = parentElm.querySelector(`#reviationadd`);
-        let val = textbox.value;
+        let val = textbox.value;/*
     switch (val) {
         case `USD`:
             parentElm.querySelector("#kurs").value = st;            
@@ -137,15 +141,17 @@ class DateProcessing {
         case `RUB`:
             parentElm.querySelector("#kurs").value = `st`; 
             break;
+        }*/
+        this.as(val);
+    }
+    as(val) {
+        async  function response() {
+            let listPromis = await fetch(`https://www.nbrb.by/api/exrates/rates?periodicity=0`);
+            let commits = await listPromis.json();
+            
+            let obj =  commits.find(item => item.Cur_Abbreviation == val);
+            console.log(obj);
         }
+        response();
     }
 } //The end______________________________DateProcessing______________________________________
-let st;
-async  function response() {
-let listPromis = await fetch(`https://www.nbrb.by/api/exrates/rates?periodicity=0`)
-let commits = await listPromis.json();
-let af = commits[5].Cur_OfficialRate;
-console.log(commits);
-return st = af;
-}
-response();
