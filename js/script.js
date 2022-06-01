@@ -133,15 +133,7 @@ class DateProcessing {
     checkManey(event) {
         const parentElm = event.target.closest('#money__money');
         let textbox = parentElm.querySelector(`#reviationadd`);
-        let val = textbox.value;/*
-    switch (val) {
-        case `USD`:
-            parentElm.querySelector("#kurs").value = st;            
-            break;
-        case `RUB`:
-            parentElm.querySelector("#kurs").value = `st`; 
-            break;
-        }*/
+        let val = textbox.value;
         this.as(val, parentElm);
     }
     as(val, parentElm) {
@@ -150,9 +142,9 @@ class DateProcessing {
             let commits = await listPromis.json();
             let obj =  commits.find(item => item.Cur_Abbreviation == val);
             if(obj == undefined) return;
-            let el = obj.Cur_OfficialRate;
+            let exchange = obj.Cur_OfficialRate;
             console.log(obj);
-            parentElm.querySelector("#kurs").value = el;
+            parentElm.querySelector("#kurs").value = exchange;
         }
         response();
     }
