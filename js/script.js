@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /*DOM information*/
-    
+    const buttons = document.querySelector(`body`);
     const formDate = document.forms["date"];
 
     /*settings DateProcessing*/
@@ -21,12 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
     /*call class*/
     const date = new DateProcessing(buttons, day, formDate, textH2, textP, textButton);
     date.getButt();
-
+    date.many();
 
 
 });//The end_________________________DOMContentLoaded______________________________________
 
-const buttons = document.querySelector(`body`);
 class DateProcessing {
     constructor(button, day, formDate, textH2, textP, textButton) {
         this.button = button;
@@ -117,34 +116,36 @@ class DateProcessing {
         const deleteElm = event.target.closest('.new__Element');
         deleteElm.remove();
     }
-} //The end______________________________DateProcessing______________________________________
-
-
-let textbox = document.querySelector(`#reviationadd`)
-/* textbox.oninput = function() {
-    let val = textbox.value;
-    switch (val) {
-        case `USD`:
-            const list = document.querySelector("#kurs").value = st;            
-            break;
-        case `RUB`:
-            document.querySelector("#kurs").value = `st`; 
-            break;
-    }
-};*/
-
-buttons.addEventListener("input", (event) => {
-    let target = event.target;
-            switch(target.id) {
+    many() { 
+        this.button.addEventListener("input", (event) => {
+        let target = event.target;
+        switch(target.id) {
                 case "reviationadd"://Ввод курса
-                    const parentElm = event.target.closest('#money__money');
-                    parentElm.querySelector("#kurs").value = st; 
+                this.checkManey(event);
                     break;
             }
         });
-
-
-
+    }
+    checkManey(event) {
+        const parentElm = event.target.closest('#money__money');
+        let textbox = parentElm.querySelector(`#reviationadd`);
+        let val = textbox.value;
+    switch (val) {
+        case `USD`:
+            parentElm.querySelector("#kurs").value = st;            
+            break;
+        case `RUB`:
+            parentElm.querySelector("#kurs").value = `st`; 
+            break;
+        }
+    }
+} //The end______________________________DateProcessing______________________________________
+let st;
+async  function response() {
 let listPromis = await fetch(`https://www.nbrb.by/api/exrates/rates?periodicity=0`)
 let commits = await listPromis.json();
-let st = commits[5].Cur_OfficialRate;
+let af = commits[5].Cur_OfficialRate;
+console.log(commits);
+return st = af;
+}
+response();
