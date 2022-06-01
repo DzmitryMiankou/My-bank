@@ -48,10 +48,9 @@ body>.money {
 }
 .money__money, .new__Element {
     display: flex;
-    grid-template-columns: repeat(5, 1fr);
     align-items: center;
     height: 50px;
-    gap: 3%;
+    gap: 2%;
 }
 .money form ,.date form {
     text-align: center;
@@ -60,8 +59,7 @@ body>.money {
     display: flex;
     margin-right: auto;
     align-self: center;
-    margin: 0% 60% 2% 0%;
-        
+    margin: 0% 60% 2% 0%;        
 }
 .money__addlist label {
     width: 110px;
@@ -116,7 +114,8 @@ button {
     border: none;
     background-color: rgba(84, 136, 136, 0.158);
     box-shadow: rgb(102, 102, 102) 1px 1px 3px;
-    color: var(--color-text)
+    color: var(--color-text);
+    border-radius:20px;
 }
 
 button:hover {
@@ -129,7 +128,9 @@ button:hover {
 input {
     width: 100px;
     border: solid 2px rgba(96, 148, 151, 0.622);
-    color: var(--color-text)
+    color: var(--color-text);
+    border-radius: 20px;
+    text-align: center;
 }
 .date__day input {
     width: 112px;
@@ -175,4 +176,7 @@ input {
     padding: 0;
     background: transparent;
     border-radius: 50%;
+}
+#reviationadd {
+    width: 40px;
 }

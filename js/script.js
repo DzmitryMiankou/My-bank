@@ -134,13 +134,11 @@ let textbox = document.querySelector(`#reviationadd`)
 };*/
 
 buttons.addEventListener("input", (event) => {
-    
     let target = event.target;
             switch(target.id) {
                 case "reviationadd"://Ввод курса
-                    const deleteElm = event.target.closest('#money__money');
-                    console.log(deleteElm);
-                    deleteElm.querySelector("#kurs").value = st; 
+                    const parentElm = event.target.closest('#money__money');
+                    parentElm.querySelector("#kurs").value = st; 
                     break;
             }
         });
