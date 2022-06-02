@@ -127,25 +127,44 @@ class DateProcessing {
                 case "reviationadd"://Ввод курса
                 this.checkManey(event);
                     break;
+                case "text"://Ввод суммы
+                this.checkManey(event);
+                    break;
             }
         });
     }
     checkManey(event) {
         const parentElm = event.target.closest('#money__money');
-        let textbox = parentElm.querySelector(`#reviationadd`);
-        let val = textbox.value;
+        const maneybox = parentElm.querySelector(`#reviationadd`);
+        const val = maneybox.value;
         this.as(val, parentElm);
     }
     as(val, parentElm) {
+        
         async  function response() {
-            let listPromis = await fetch(`https://www.nbrb.by/api/exrates/rates?periodicity=0`);
-            let commits = await listPromis.json();
-            let obj =  commits.find(item => item.Cur_Abbreviation == val);
-            if(obj == undefined) return;
-            let exchange = obj.Cur_OfficialRate;
-            console.log(obj);
-            parentElm.querySelector("#kurs").value = exchange;
+            try {
+                const listPromis = await fetch(`https://www.nbrb.by/api/exrates/rates?periodicity=0`);
+                const commits = await listPromis.json();
+                const obj =  commits.find(item => item.Cur_Abbreviation == val);
+                if(obj == undefined) return;
+                let CurOfficial = obj.Cur_OfficialRate;
+                let CurScale = obj.Cur_Scale;
+                parentElm.querySelector("#kurs").value = CurOfficial;
+                let e = parentElm.querySelector("#text").value;
+                if (e == 0 || e < 0 || !Number(e)) return;
+                let y = CurOfficial;
+                let x = CurScale;
+                let count = (e * y) / x;
+                return parentElm.querySelector("#byn").value = count ;
+
+            }
+            catch(err) {
+                alert(`Возникла ошибка ${err}`);
+            }
         }
-        response();
+        response().then(console.log);
+    }
+    countVal() {
+
     }
 } //The end______________________________DateProcessing______________________________________
