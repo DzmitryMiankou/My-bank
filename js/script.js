@@ -106,19 +106,22 @@ class DateProcessing {
         button.setAttribute(`id`,`newButton`);
     }
     generatorName() {
-        const add2 = document.querySelector("#money")
-        let chil = add2.childNodes;
-        let chilLength = chil.length;
-        let idName = chilLength -4;
         const add = document.querySelector(".money__money");
-        let div2 = add.cloneNode(true);
+        const div2 = add.cloneNode(true);
+        div2.querySelectorAll("form > input").forEach(el=>el.value = '');
         add.before(div2);
         add.setAttribute(`class`,`new__Element`);/*${idName}*/
     }
     deleteElement(event) {        
         if (!event.target.closest('.new__Element')) return;
         const deleteElm = event.target.closest('.new__Element');
-        deleteElm.remove();
+        let qvest = confirm(`Вы уверены, что хотите удалить строку?`);
+        if(qvest == true) {
+            deleteElm.remove();
+        } 
+        else {
+            return;
+        }     
     }
     many() { 
         this.button.addEventListener("input", (event) => {
@@ -139,8 +142,7 @@ class DateProcessing {
         const val = maneybox.value;
         this.as(val, parentElm);
     }
-    as(val, parentElm) {
-        
+    as(val, parentElm) {        
         async  function response() {
             try {
                 const listPromis = await fetch(`https://www.nbrb.by/api/exrates/rates?periodicity=0`);
@@ -155,16 +157,13 @@ class DateProcessing {
                 let y = CurOfficial;
                 let x = CurScale;
                 let count = (e * y) / x;
-                return parentElm.querySelector("#byn").value = count ;
+                return parentElm.querySelector("#byn").value = count;
 
             }
             catch(err) {
                 alert(`Возникла ошибка ${err}`);
             }
         }
-        response().then(console.log);
-    }
-    countVal() {
-
+        response();
     }
 } //The end______________________________DateProcessing______________________________________
