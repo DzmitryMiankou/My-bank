@@ -157,11 +157,11 @@ class DateProcessing {
                 let y = CurOfficial;
                 let x = CurScale;
                 let count = (e * y) / x;
-                return parentElm.querySelector("#byn").value = count;
-
+                parentElm.querySelector("#byn").value = count;
+                return document.querySelector("#many__end").value = count;
             }
-            catch(err) {
-                alert(`Возникла ошибка ${err}`);
+            catch(error) {
+                alert(`Возникла ошибка ${error}`);
             }
         }
         response();
