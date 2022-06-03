@@ -57,6 +57,9 @@ class DateProcessing {
                 case "dellist"://Delete list
                     this.deleteElement(event);
                     break;
+                case "remember"://Delete list
+                    this.remember();
+                    break;
             }
         });
     }
@@ -165,5 +168,10 @@ class DateProcessing {
             }
         }
         response();
+    }
+    remember() {
+        const d = document.querySelector("#many__end").value;
+        localStorage.setItem('test', d);
+        alert( localStorage.getItem('test') );
     }
 } //The end______________________________DateProcessing______________________________________
