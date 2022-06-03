@@ -116,7 +116,12 @@ class DateProcessing {
         add.setAttribute(`class`,`new__Element`);/*${idName}*/
     }
     deleteElement(event) {        
-        if (!event.target.closest('.new__Element')) return;
+        if (!event.target.closest('.new__Element')) {  
+            const add = document.querySelector(".money__money");
+            add.querySelectorAll("form > input").forEach(el=>el.value = '');
+            document.querySelector("#many__end").value = '';
+            return;                  
+        }
         const deleteElm = event.target.closest('.new__Element');
         let qvest = confirm(`Вы уверены, что хотите удалить строку?`);
         if(qvest == true) {
