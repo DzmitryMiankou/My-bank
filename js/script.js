@@ -1,4 +1,4 @@
-`use script`
+`use strict`
     const today = new Date();
     const dateSrc = today.toLocaleString('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric' });
 document.addEventListener("DOMContentLoaded", () => {
@@ -186,7 +186,7 @@ class DateProcessing {
         };
 
         /*this.arr.push(student);*/
-        localStorage.setItem(`${dateSrc}`,JSON.stringify(student))
+        localStorage.setItem(`${dateSrc}`,JSON.stringify(student));
 
         
     }
