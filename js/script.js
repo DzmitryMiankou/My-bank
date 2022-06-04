@@ -38,6 +38,7 @@ class DateProcessing {
         this.textH2 = textH2;
         this.textP = textP;
         this.textButton = textButton;
+        this.arr = [];
     }
     getButt() {
         this.button.addEventListener("click", (event) => {
@@ -176,7 +177,17 @@ class DateProcessing {
     }
     remember() {
         const d = document.querySelector("#many__end").value;
-        localStorage.setItem('test', d);
-        alert( localStorage.getItem('test') );
+        
+        let student = {
+            date: dateSrc,
+            Cur_USD: 30,
+            Cur_EUR: false,
+            Cur_ENDby: d,
+        };
+
+        /*this.arr.push(student);*/
+        localStorage.setItem(`${dateSrc}`,JSON.stringify(student))
+
+        
     }
 } //The end______________________________DateProcessing______________________________________
