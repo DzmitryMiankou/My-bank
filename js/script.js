@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     /*call class*/
     const date = new DateProcessing(buttons, day, formDate, textH2, textP, textButton);
     date.getButt();
-    date.many();  
+    date.input();  
     
 
 });//The end_________________________DOMContentLoaded______________________________________
@@ -46,20 +46,37 @@ class DateProcessing {
         this.textButton = textButton;
         this.arr = [];
     }
-    getButt(a) {
-        this.button.addEventListener("click", (event) => {
+     input() { 
+        window.addEventListener("input", (event) => {
             let target = event.target;
             switch(target.id) {
-                case "date__input"://Ввод курса
-                    this.chekDay();
+                case "date"://check date
+                this.checkDay();
+                    break;
+                case "reviationadd"://Ввод курса
+                this.checkManey(event);
+                    break;
+                case "text"://Ввод суммы
+                this.checkManey(event);
+                console.log(target);
+                    break;
+            };
+        });
+    }
+    getButt(a) {
+        window.addEventListener("click", (event) => {
+            let target = event.target;
+            switch(target.id) {
+                case "date__input":
+                    this.toDays();
                     break;
                 case "newButton"://Delete window
-                    let val = document.getElementById("newtextar").value;
-                    console.log(val);
+                    document.getElementById("newtextar").value;
                     newDiv.remove();
                     break;
                 case "addlist"://Create window
-                    this.generatorName();
+                    this.clone();
+                    console.log(target);
                     break;
                 case "dellist"://Delete list
                     this.deleteElement(event);
@@ -76,26 +93,10 @@ class DateProcessing {
                 case "curbyn"://Delete list
                     document.querySelector("#many__end").value = this.arr[0];
                     break;
-            }
+            };
         });
     }
-    many() { 
-        this.button.addEventListener("input", (event) => {
-            let target = event.target;
-            switch(target.id) {
-                case "reviationadd"://Ввод курса
-                this.checkManey(event);
-                    break;
-                case "text"://Ввод суммы
-                this.checkManey(event);
-                    break;
-                    case "date"://Ввод date
-                this.chekDay();
-                    break;
-            }
-        });
-    }
-    chekDay() {
+    checkDay() {
         const inputDay = this.formDate.elements["date"].value;
         const newDay = new Date(inputDay);
         newDay.setHours(0, 0, 0, 0);
@@ -103,18 +104,20 @@ class DateProcessing {
             setTimeout(() => {
                 document.querySelector('input[type="date"]').valueAsDate = new Date ();
             }, 500);
-        }
-        if(this.toDay === newDay.getTime()) {
-            this.newTextWindow()
-        }
+        };
         if(this.toDay > newDay.getTime())  {
             let a = document.querySelector('input[type="date"]').value;
             this.oldDay(newDay.toLocaleString('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric' }));
-             
-        }
+        };
     }
-    history() {
-        
+    toDays(){
+        const inputDay = this.formDate.elements["date"].value;
+        const newDay = new Date(inputDay);
+        newDay.setHours(0, 0, 0, 0);
+        if(this.toDay === newDay.getTime()) {
+            this.newTextWindow();
+        };
+
     }
     newTextWindow() {
         const list = document.querySelector("#newForm");
@@ -150,7 +153,7 @@ class DateProcessing {
         textar.setAttribute(`id`,`newtextar`);
         button.setAttribute(`id`,`newButton`);
     }
-    generatorName() {
+    clone() {
         const add = document.querySelector(".money__money");
         const div2 = add.cloneNode(true);
         div2.querySelectorAll("form > input").forEach(el=>el.value = '');
@@ -163,7 +166,7 @@ class DateProcessing {
             add.querySelectorAll("form > input").forEach(el=>el.value = '');
             document.querySelector("#many__end").value = '';
             return;                  
-        }
+        };
         const deleteElm = event.target.closest('.new__Element');
         let qvest = confirm(`Вы уверены, что хотите удалить строку?`);
         if(qvest == true) {
@@ -171,7 +174,7 @@ class DateProcessing {
         } 
         else {
             return;
-        }     
+        };     
     }
     checkManey(event) {
         const parentElm = event.target.closest('#money__money');
@@ -203,8 +206,8 @@ class DateProcessing {
             }
             catch(error) {
                 alert(`Возникла ошибка ${error}`);
-            }
-        }
+            };
+        };
         response().then((result) => this.getButt(result));
     }
     remember(a) {
@@ -220,7 +223,7 @@ class DateProcessing {
         /*this.arr.push(student);*/
         localStorage.setItem(`${dateSrc}`,JSON.stringify(student));
         localStorage.setItem(`04.06.2022`,JSON.stringify(student));
-        }        
+        };       
     }
     oldDay(a) {
        let time = a;

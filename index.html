@@ -27,23 +27,18 @@
       </div>
     </div>
     <div id="money" class="money">
-      <div class="money__addlist">
-        <button id="addlist" type="reset">+</button>
-        <label id="addlist">ДОБАВИТЬ ВАЛЮТУ</label>
+      <div class="money__addlist" oninput="event.stopPropagation()">
+        <button id="addlist" type="button">+</button>
+        <label id="addlist" type="button">ДОБАВИТЬ ВАЛЮТУ</label>
       </div>
       <div id="money__money" class="money__money">
         <form>
           <label>Сумма:</label>
-          <input id="text" type="text" placeholder="" />
+          <input id="text" type="text" />
         </form>
         <form class="reviation">
           <label for="reviationadd">Вид:</label>
-          <input
-            list="reviation"
-            id="reviationadd"
-            name="reviationadd"
-            placeholder="USD"
-          />
+          <input list="reviation" id="reviationadd" />
           <datalist id="reviation">
             <option value="USD"></option>
             <option value="EUR"></option>
@@ -57,7 +52,7 @@
         </form>
         <form class="money__kurs">
           <label>Курс:</label>
-          <input id="kurs" class="kurs" type="text" placeholder="" value="" />
+          <input id="kurs" class="kurs" type="text" value="" />
         </form>
         <form class="money__byrub">
           <label>в BYN</label>
