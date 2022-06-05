@@ -48,6 +48,7 @@ class DateProcessing {
     }
      input() { 
         window.addEventListener("input", (event) => {
+            
             let target = event.target;
             switch(target.id) {
                 case "date"://check date
