@@ -157,6 +157,8 @@ class DateProcessing {
                 const listPromis = await fetch(`https://www.nbrb.by/api/exrates/rates?periodicity=0`);
                 const commits = await listPromis.json();
                 const obj =  commits.find(item => item.Cur_Abbreviation == val);
+                const USD = commits[5].Cur_OfficialRate;
+                const EUR = commits[6].Cur_OfficialRate;
                 if(obj == undefined) return;
                 let CurOfficial = obj.Cur_OfficialRate;
                 let CurScale = obj.Cur_Scale;
@@ -167,15 +169,21 @@ class DateProcessing {
                 let x = CurScale;
                 let count = (e * y) / x;
                 parentElm.querySelector("#byn").value = count;
-                return document.querySelector("#many__end").value = count;
+                document.querySelector("#many__end").value = count;
+                let arr = [count, USD, EUR]
+                return arr; 
             }
             catch(error) {
                 alert(`Возникла ошибка ${error}`);
             }
         }
-        response();
+        response().then((result) => this.sd(result));
+    }
+    sd(a) {
+           console.log(a);
     }
     remember() {
+        
         const d = document.querySelector("#many__end").value;
         
         let student = {
