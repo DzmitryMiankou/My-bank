@@ -68,7 +68,13 @@ class DateProcessing {
                     this.remember(a);
                     break;
                 case "usd"://Delete list
-                    this.cur(a);
+                    this.cur(this.arr[0] , this.arr[1]);
+                    break;
+                case "eur"://Delete list
+                    this.cur(this.arr[0] , this.arr[2]);
+                    break;
+                case "curbyn"://Delete list
+                    document.querySelector("#many__end").value = this.arr[0];
                     break;
             }
         });
@@ -226,10 +232,11 @@ class DateProcessing {
                                                              border: solid 2px red;`;
        let byn = json.total_BYN;
        let usd = json.Cur_USD;
-       this.arr = [byn, usd];
+       let eur = json.Cur_EUR;
+       this.arr = [byn, usd, eur];
     }
     cur(a, b) {
-        document.querySelector("#many__end").value = this.arr[0] / this.arr[1];
+        document.querySelector("#many__end").value = a / b;
 
     }
 } //The end______________________________DateProcessing______________________________________
