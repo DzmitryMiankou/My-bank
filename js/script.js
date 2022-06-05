@@ -1,6 +1,12 @@
 `use strict`
     const today = new Date();
     const dateSrc = today.toLocaleString('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric' });
+
+
+
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
     /*this is today time*/
     const dateToDay = document.querySelector('input[type="date"]').valueAsDate = today;
@@ -22,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const date = new DateProcessing(buttons, day, formDate, textH2, textP, textButton);
     date.getButt();
     date.many();  
+    
 
 });//The end_________________________DOMContentLoaded______________________________________
 
@@ -60,6 +67,25 @@ class DateProcessing {
                 case "remember"://Delete list
                     this.remember(a);
                     break;
+                case "usd"://Delete list
+                    this.cur(a);
+                    break;
+            }
+        });
+    }
+    many() { 
+        this.button.addEventListener("input", (event) => {
+            let target = event.target;
+            switch(target.id) {
+                case "reviationadd"://Ввод курса
+                this.checkManey(event);
+                    break;
+                case "text"://Ввод суммы
+                this.checkManey(event);
+                    break;
+                    case "date"://Ввод date
+                this.chekDay();
+                    break;
             }
         });
     }
@@ -68,7 +94,9 @@ class DateProcessing {
         const newDay = new Date(inputDay);
         newDay.setHours(0, 0, 0, 0);
         if(this.toDay < newDay.getTime()) {
-            document.querySelector('input[type="date"]').valueAsDate = new Date ();
+            setTimeout(() => {
+                document.querySelector('input[type="date"]').valueAsDate = new Date ();
+            }, 500);
         }
         if(this.toDay === newDay.getTime()) {
             this.newTextWindow()
@@ -76,6 +104,7 @@ class DateProcessing {
         if(this.toDay > newDay.getTime())  {
             let a = document.querySelector('input[type="date"]').value;
             this.oldDay(newDay.toLocaleString('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric' }));
+             
         }
     }
     history() {
@@ -138,19 +167,6 @@ class DateProcessing {
             return;
         }     
     }
-    many() { 
-        this.button.addEventListener("input", (event) => {
-        let target = event.target;
-        switch(target.id) {
-                case "reviationadd"://Ввод курса
-                this.checkManey(event);
-                    break;
-                case "text"://Ввод суммы
-                this.checkManey(event);
-                    break;
-            }
-        });
-    }
     checkManey(event) {
         const parentElm = event.target.closest('#money__money');
         const maneybox = parentElm.querySelector(`#reviationadd`);
@@ -194,18 +210,26 @@ class DateProcessing {
             Cur_EUR: arr[2],
             total_BYN: arr[0],
         };
-    
 
         /*this.arr.push(student);*/
         localStorage.setItem(`${dateSrc}`,JSON.stringify(student));
         localStorage.setItem(`04.06.2022`,JSON.stringify(student));
-        }
-
-        
+        }        
     }
     oldDay(a) {
-       const getLocal = localStorage.getItem(a);
+       let time = a;
+       const getLocal = localStorage.getItem(time);
        const json = JSON.parse(getLocal);
-       console.log(json.Cur_EUR)
+       
+       document.querySelector("#many__end").value = json.total_BYN;
+       document.querySelector("#many__end").style.cssText = `color: red;
+                                                             border: solid 2px red;`;
+       let byn = json.total_BYN;
+       let usd = json.Cur_USD;
+       this.arr = [byn, usd];
+    }
+    cur(a, b) {
+        document.querySelector("#many__end").value = this.arr[0] / this.arr[1];
+
     }
 } //The end______________________________DateProcessing______________________________________
