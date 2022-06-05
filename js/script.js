@@ -3,7 +3,7 @@
     const dateSrc = today.toLocaleString('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric' });
 document.addEventListener("DOMContentLoaded", () => {
     /*this is today time*/
-    const dateToDay = document.querySelector('input[type="date"]').valueAsDate = new Date ();
+    const dateToDay = document.querySelector('input[type="date"]').valueAsDate = today;
     const day = dateToDay.setHours(0, 0, 0, 0);
     
 
@@ -21,8 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     /*call class*/
     const date = new DateProcessing(buttons, day, formDate, textH2, textP, textButton);
     date.getButt();
-    date.many();
-   
+    date.many();  
 
 });//The end_________________________DOMContentLoaded______________________________________
 
@@ -40,7 +39,7 @@ class DateProcessing {
         this.textButton = textButton;
         this.arr = [];
     }
-    getButt() {
+    getButt(a) {
         this.button.addEventListener("click", (event) => {
             let target = event.target;
             switch(target.id) {
@@ -59,7 +58,7 @@ class DateProcessing {
                     this.deleteElement(event);
                     break;
                 case "remember"://Delete list
-                    this.remember();
+                    this.remember(a);
                     break;
             }
         });
@@ -74,6 +73,13 @@ class DateProcessing {
         if(this.toDay === newDay.getTime()) {
             this.newTextWindow()
         }
+        if(this.toDay > newDay.getTime())  {
+            let a = document.querySelector('input[type="date"]').value;
+            this.oldDay(newDay.toLocaleString('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric' }));
+        }
+    }
+    history() {
+        
     }
     newTextWindow() {
         const list = document.querySelector("#newForm");
@@ -177,25 +183,29 @@ class DateProcessing {
                 alert(`Возникла ошибка ${error}`);
             }
         }
-        response().then((result) => this.sd(result));
+        response().then((result) => this.getButt(result));
     }
-    sd(a) {
-           console.log(a);
-    }
-    remember() {
-        
-        const d = document.querySelector("#many__end").value;
-        
+    remember(a) {
+        const arr = a;
+        if (a !== undefined) {
         let student = {
             date: dateSrc,
-            Cur_USD: 30,
-            Cur_EUR: false,
-            Cur_ENDby: d,
+            Cur_USD: arr[1],
+            Cur_EUR: arr[2],
+            total_BYN: arr[0],
         };
+    
 
         /*this.arr.push(student);*/
         localStorage.setItem(`${dateSrc}`,JSON.stringify(student));
+        localStorage.setItem(`04.06.2022`,JSON.stringify(student));
+        }
 
         
+    }
+    oldDay(a) {
+       const getLocal = localStorage.getItem(a);
+       const json = JSON.parse(getLocal);
+       console.log(json.Cur_EUR)
     }
 } //The end______________________________DateProcessing______________________________________
