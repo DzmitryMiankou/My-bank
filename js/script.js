@@ -109,7 +109,12 @@ class DateProcessing {
         if(this.toDay > newDay.getTime())  {
             let a = document.querySelector('input[type="date"]').value;
             this.oldDay(newDay.toLocaleString('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric' }));
-        };
+            document.querySelector("#many__end").style.cssText = `color: red;
+                                                                  border: red solid 2px;`;
+        } else {
+        document.querySelector("#many__end").style.cssText = ``;
+        document.querySelector("#many__end").value = ``;
+    };
     }
     toDays(){
         const inputDay = this.formDate.elements["date"].value;
@@ -223,7 +228,6 @@ class DateProcessing {
 
         /*this.arr.push(student);*/
         localStorage.setItem(`${dateSrc}`,JSON.stringify(student));
-        localStorage.setItem(`04.06.2022`,JSON.stringify(student));
         };       
     }
     oldDay(a) {
@@ -232,8 +236,7 @@ class DateProcessing {
        const json = JSON.parse(getLocal);
        
        document.querySelector("#many__end").value = json.total_BYN;
-       document.querySelector("#many__end").style.cssText = `color: red;
-                                                             border: solid 2px red;`;
+       
        let byn = json.total_BYN;
        let usd = json.Cur_USD;
        let eur = json.Cur_EUR;
