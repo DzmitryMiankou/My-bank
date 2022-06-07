@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-let g;
 
 class DateProcessing {
     constructor(button, day, formDate, textH2, textP, textButton) {
@@ -45,6 +44,7 @@ class DateProcessing {
         this.textP = textP;
         this.textButton = textButton;
         this.arr = [];
+        this.promis;
     }
      input() { 
         window.addEventListener("input", (event) => {
@@ -83,13 +83,13 @@ class DateProcessing {
                     this.deleteElement(event);
                     break;
                 case "remember"://Delete list
-                    this.remember(g);
+                    this.remember(this.promis);
                     break;
                 case "usd"://Delete list
-                    this.cur(this.arr[0] , this.arr[1]);
+                    this.cur(this.arr[0] , this.promis[4]);
                     break;
                 case "eur"://Delete list
-                    this.cur(this.arr[0] , this.arr[2]);
+                    this.cur(this.arr[0] , this.promis[5]);
                     break;
                 case "curbyn"://Delete list
                     document.querySelector("#many__end").value = this.arr[0];
@@ -109,8 +109,10 @@ class DateProcessing {
         if(this.toDay > newDay.getTime())  {
             let a = document.querySelector('input[type="date"]').value;
             this.oldDay(newDay.toLocaleString('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric' }));
-            document.querySelector("#many__end").style.cssText = `color: red;
+            /*document.querySelector("#many__end").style.cssText = `color: red;
                                                                   border: red solid 2px;`;
+            document.getElementById("#money__money").querySelectorAll("form > input").style.cssText = `color: red;
+                                                                  border: red solid 2px;`;*/
         } else {
         document.querySelector("#many__end").style.cssText = ``;
         document.querySelector("#many__end").value = ``;
@@ -199,6 +201,7 @@ class DateProcessing {
                 if(obj == undefined) return;
                 let CurOfficial = obj.Cur_OfficialRate;
                 let CurScale = obj.Cur_Scale;
+                let Abbreviation = obj.Cur_Abbreviation;
                 parentElm.querySelector("#kurs").value = CurOfficial;
                 let e = parentElm.querySelector("#text").value;
                 if (e == 0 || e < 0 || !Number(e)) return;
@@ -207,22 +210,22 @@ class DateProcessing {
                 let count = (e * y) / x;
                 parentElm.querySelector("#byn").value = count;
                 document.querySelector("#many__end").value = count;
-                let arr = [count, USD, EUR];
+                let arr = [count, Abbreviation, CurOfficial, e, USD, EUR];
                 return arr; 
             }
             catch(error) {
                 alert(`Возникла ошибка ${error}`);
             };
         };
-        response().then((result) => g = result);
+        response().then((result) => this.promis = result);
     }
     remember(a) {
         const arr = a;
         if (a !== undefined) {
         let student = {
-            date: dateSrc,
-            Cur_USD: arr[1],
-            Cur_EUR: arr[2],
+            inputMoney: arr[3],
+            Cur_Abbreviation: arr[1],
+            CurOfficial: arr[2],
             total_BYN: arr[0],
         };
 
@@ -235,11 +238,15 @@ class DateProcessing {
        const getLocal = localStorage.getItem(time);
        const json = JSON.parse(getLocal);
        
-       document.querySelector("#many__end").value = json.total_BYN;
+       document.querySelector("#text").value = json.inputMoney;
+       document.querySelector("#reviationadd").value = json.Cur_Abbreviation;
+       document.querySelector("#kurs").value = json.CurOfficial;
+       document.querySelector("#byn").value = json.total_BYN;
        
        let byn = json.total_BYN;
-       let usd = json.Cur_USD;
-       let eur = json.Cur_EUR;
+       let inputMoney = json.inputMoney;
+       let Cur_Abbreviation = json.Cur_Abbreviation;
+       let CurOfficial = json.CurOfficial;
        this.arr = [byn, usd, eur];
     }
     cur(a, b) {
