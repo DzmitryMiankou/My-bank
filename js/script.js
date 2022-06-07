@@ -27,14 +27,14 @@ document.addEventListener("DOMContentLoaded", () => {
     /*call class*/
     const date = new DateProcessing(buttons, day, formDate, textH2, textP, textButton);
     
-    date.type();
-    
+    date.input();
+    date.getButt()
 
 });//The end_________________________DOMContentLoaded______________________________________
 
 
 
-
+let g;
 
 class DateProcessing {
     constructor(button, day, formDate, textH2, textP, textButton) {
@@ -45,23 +45,10 @@ class DateProcessing {
         this.textP = textP;
         this.textButton = textButton;
         this.arr = [];
-        this.d = ``;
     }
-    type () {
-        let handler = (event) => {
-            switch(event.type) {
-                case "input":
-                this.input(event);
-                    break;
-                case "click":
-                this.getButt(event);
-                    break;
-            }
-        };
-      window.onclick = handler;
-      window.oninput = handler;
-    }
-     input(event) {       
+     input() { 
+        window.addEventListener("input", (event) => {
+
             let target = event.target;
             switch(target.id) {
                 case "date"://check date
@@ -72,12 +59,13 @@ class DateProcessing {
                     break;
                 case "text"://Ввод суммы
                 this.checkManey(event);
+                console.log(target);
                     break;
             };
-       
+        });
     }
-    getButt(event) {
-        
+    getButt() {
+        window.addEventListener("click", (event) => {
             let target = event.target;
             switch(target.id) {
                 case "date__input":
@@ -95,7 +83,7 @@ class DateProcessing {
                     this.deleteElement(event);
                     break;
                 case "remember"://Delete list
-                    this.remember(a);
+                    this.remember(g);
                     break;
                 case "usd"://Delete list
                     this.cur(this.arr[0] , this.arr[1]);
@@ -107,7 +95,7 @@ class DateProcessing {
                     document.querySelector("#many__end").value = this.arr[0];
                     break;
             };
-        
+        });
     }
     checkDay() {
         const inputDay = this.formDate.elements["date"].value;
@@ -221,7 +209,7 @@ class DateProcessing {
                 alert(`Возникла ошибка ${error}`);
             };
         };
-        response().then((result) => this.getButt(result));
+        response().then((result) => g = result);
     }
     remember(a) {
         const arr = a;
