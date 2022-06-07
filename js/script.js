@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /*call class*/
     const date = new DateProcessing(buttons, day, formDate, textH2, textP, textButton);
-    date.getButt();
-    date.input();  
+    
+    date.type();
     
 
 });//The end_________________________DOMContentLoaded______________________________________
@@ -45,10 +45,23 @@ class DateProcessing {
         this.textP = textP;
         this.textButton = textButton;
         this.arr = [];
+        this.d = ``;
     }
-     input() { 
-        window.addEventListener("input", (event) => {
-            
+    type () {
+        let handler = (event) => {
+            switch(event.type) {
+                case "input":
+                this.input(event);
+                    break;
+                case "click":
+                this.getButt(event);
+                    break;
+            }
+        };
+      window.onclick = handler;
+      window.oninput = handler;
+    }
+     input(event) {       
             let target = event.target;
             switch(target.id) {
                 case "date"://check date
@@ -59,13 +72,12 @@ class DateProcessing {
                     break;
                 case "text"://Ввод суммы
                 this.checkManey(event);
-                console.log(target);
                     break;
             };
-        });
+       
     }
-    getButt(a) {
-        window.addEventListener("click", (event) => {
+    getButt(event) {
+        
             let target = event.target;
             switch(target.id) {
                 case "date__input":
@@ -95,7 +107,7 @@ class DateProcessing {
                     document.querySelector("#many__end").value = this.arr[0];
                     break;
             };
-        });
+        
     }
     checkDay() {
         const inputDay = this.formDate.elements["date"].value;
@@ -202,7 +214,7 @@ class DateProcessing {
                 let count = (e * y) / x;
                 parentElm.querySelector("#byn").value = count;
                 document.querySelector("#many__end").value = count;
-                let arr = [count, USD, EUR]
+                let arr = [count, USD, EUR];
                 return arr; 
             }
             catch(error) {
