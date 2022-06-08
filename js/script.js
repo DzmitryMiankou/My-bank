@@ -59,7 +59,6 @@ class DateProcessing {
                     break;
                 case "text"://Ввод суммы
                 this.checkManey(event);
-                console.log(target);
                     break;
             };
         });
@@ -77,7 +76,6 @@ class DateProcessing {
                     break;
                 case "addlist"://Create window
                     this.clone();
-                    console.log(target);
                     break;
                 case "dellist"://Delete list
                     this.deleteElement(event);
@@ -107,14 +105,11 @@ class DateProcessing {
             }, 500);
         };
         if(this.toDay > newDay.getTime())  {
-            let a = document.querySelector('input[type="date"]').value;
             this.oldDay(newDay.toLocaleString('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric' }));
-            /*document.querySelector("#many__end").style.cssText = `color: red;
-                                                                  border: red solid 2px;`;
-            document.getElementById("#money__money").querySelectorAll("form > input").style.cssText = `color: red;
-                                                                  border: red solid 2px;`;*/
+            document.querySelectorAll(`.money__money form input`).forEach(el => el.style.cssText = `color: red;
+                                                                  border: red solid 2px;`);
         } else {
-        document.querySelector("#many__end").style.cssText = ``;
+         document.querySelectorAll(`.money__money form input`).forEach(el => el.style.cssText = ``);
         document.querySelector("#many__end").value = ``;
     };
     }
@@ -124,8 +119,8 @@ class DateProcessing {
         newDay.setHours(0, 0, 0, 0);
         if(this.toDay === newDay.getTime()) {
             this.newTextWindow();
+            this.oldDay(newDay.toLocaleString('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric' }));
         };
-
     }
     newTextWindow() {
         const list = document.querySelector("#newForm");
@@ -254,3 +249,4 @@ class DateProcessing {
 
     }
 } //The end______________________________DateProcessing______________________________________
+
