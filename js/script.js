@@ -110,7 +110,7 @@ class DateProcessing {
                                                                   border: red solid 2px;`);
         } else {
          document.querySelectorAll(`.money__money form input`).forEach(el => el.style.cssText = ``);
-        document.querySelector("#many__end").value = ``;
+         document.querySelectorAll(`.money__money form input`).forEach(el => el.value = ``);
     };
     }
     toDays(){
@@ -190,10 +190,16 @@ class DateProcessing {
             try {
                 const listPromis = await fetch(`https://www.nbrb.by/api/exrates/rates?periodicity=0`);
                 const commits = await listPromis.json();
-                const obj =  commits.find(item => item.Cur_Abbreviation == val);
+                console.log(commits);
+                // выведем полный json  и потом будем с ним работать
+                
+
                 const USD = commits[5].Cur_OfficialRate;
                 const EUR = commits[6].Cur_OfficialRate;
+
+                const obj =  commits.find(item => item.Cur_Abbreviation == val);
                 if(obj == undefined) return;
+                
                 let CurOfficial = obj.Cur_OfficialRate;
                 let CurScale = obj.Cur_Scale;
                 let Abbreviation = obj.Cur_Abbreviation;
@@ -223,7 +229,6 @@ class DateProcessing {
             CurOfficial: arr[2],
             total_BYN: arr[0],
         };
-
         /*this.arr.push(student);*/
         localStorage.setItem(`${dateSrc}`,JSON.stringify(student));
         };       
@@ -249,4 +254,3 @@ class DateProcessing {
 
     }
 } //The end______________________________DateProcessing______________________________________
-
