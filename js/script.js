@@ -29,10 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
     
     date.input();
     date.getButt()
+    date.as();
 
 });//The end_________________________DOMContentLoaded______________________________________
 
-
+let l;
 
 
 class DateProcessing {
