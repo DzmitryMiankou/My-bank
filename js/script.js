@@ -86,7 +86,7 @@ class DateProcessing {
                     break;
                 case "usd"://Delete list
                 document.querySelector(`#usd`).style.cssText = `
-                background-color: thistle ;`
+                background-color: thistle;`
                 let s = `USD`;
                     this.countCur(s);
                     break;
