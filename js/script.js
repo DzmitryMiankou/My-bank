@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     date.input();
     date.getButt()
-    date.as();
+    
 
 });//The end_________________________DOMContentLoaded______________________________________
 
@@ -85,13 +85,15 @@ class DateProcessing {
                     this.remember(this.promis);
                     break;
                 case "usd"://Delete list
-                    this.cur(this.arr[0] , this.promis[4]);
+                    let s = `USD`;
+                    this.countCur(s);
                     break;
                 case "eur"://Delete list
-                    this.cur(this.arr[0] , this.promis[5]);
+                    let f = `EUR`;
+                    this.countCur(f);
                     break;
                 case "curbyn"://Delete list
-                    document.querySelector("#many__end").value = this.arr[0];
+                    document.querySelector("#many__end").value = document.querySelector("#byn").value;
                     break;
             };
         });
@@ -191,8 +193,6 @@ class DateProcessing {
             try {
                 const listPromis = await fetch(`https://www.nbrb.by/api/exrates/rates?periodicity=0`);
                 const commits = await listPromis.json();
-                console.log(commits);
-                // выведем полный json  и потом будем с ним работать
                 
 
                 const USD = commits[5].Cur_OfficialRate;
@@ -243,6 +243,7 @@ class DateProcessing {
        document.querySelector("#reviationadd").value = json.Cur_Abbreviation;
        document.querySelector("#kurs").value = json.CurOfficial;
        document.querySelector("#byn").value = json.total_BYN;
+       document.querySelector("#many__end").value = json.total_BYN;
        
        let byn = json.total_BYN;
        let inputMoney = json.inputMoney;
@@ -250,8 +251,22 @@ class DateProcessing {
        let CurOfficial = json.CurOfficial;
        this.arr = [byn, usd, eur];
     }
-    cur(a, b) {
-        document.querySelector("#many__end").value = a / b;
+    countCur(a) {
+        async  function response() {
+            try {
+                const listPromis = await fetch(`https://www.nbrb.by/api/exrates/rates?periodicity=0`);
+                const commits = await listPromis.json();
+                const obj =  commits.find(item => item.Cur_Abbreviation == a);
 
+
+                const CurScale = obj.Cur_OfficialRate;
+                let e = document.querySelector("#byn").value;
+                let f  = document.querySelector("#many__end").value = e / CurScale;
+            }
+            catch(error) {
+                alert(`Возникла ошибка ${error}`);
+            }
+        }
+        response();
     }
 } //The end______________________________DateProcessing______________________________________
