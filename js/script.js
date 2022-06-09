@@ -85,10 +85,13 @@ class DateProcessing {
                     this.remember(this.promis);
                     break;
                 case "usd"://Delete list
-                    let s = `USD`;
+                document.querySelector(`#usd`).style.cssText = `
+                background-color: thistle ;`
+                let s = `USD`;
                     this.countCur(s);
                     break;
                 case "eur"://Delete list
+                document.querySelector(`#usd`).style.cssText = ``
                     let f = `EUR`;
                     this.countCur(f);
                     break;
@@ -266,7 +269,7 @@ class DateProcessing {
             catch(error) {
                 alert(`Возникла ошибка ${error}`);
             }
-        }
+        };
         response();
     }
 } //The end______________________________DateProcessing______________________________________
