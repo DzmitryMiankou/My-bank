@@ -28,6 +28,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const date = new DateProcessing(buttons, day, formDate, textH2, textP, textButton);
     const dgf = new Graph();
     dgf.butt();
+     dgf.data();
+    dgf.canva();
+    
+   
+
+
     date.input();
     date.getButt()
     
@@ -274,14 +280,47 @@ class DateProcessing {
         response();
     }
 }; //The end______________________________DateProcessing______________________________________
+/*
+const canvas = document.querySelector("#canvas");
+canvas.style.cssText = `display: none;`*/
+
+
+
+let date = new Date().getFullYear();
+let date2 = new Date().getMonth();
+
+
+
+function howMuchDays ( year , month) {
+
+var date1 = new Date(year, month-1, 1);
+
+var date2 = new Date(year, month, 1);
+
+return Math.round((date2 - date1) / 1000 / 3600 / 24);
+
+} 
+let countDay = howMuchDays (date, date2 + 1);
+
+
+
+
+
+
 
 
 
 class Graph {
     constructor() {
-        this.WIDTH = 400;
+        this.WIDTH = 600;
         this.HEIGHT = 400;
+        this.DPI_WIDTH = this.WIDTH * 2;
+        this.DPI_HEIGHT = this.HEIGHT * 2;
+        this.columne_count = countDay;
+        this.arr;
+        this.arr2;
     }
+   
     butt() { 
      window.addEventListener("click", (event) => {
             let target = event.target;
@@ -290,53 +329,95 @@ class Graph {
                  this.newTextWindow();
                  break;
                  default:
-                 let f = document.querySelector(`#newCan`);
-                 if (f == null) return;
-                 f.remove();
-                
+                 /*canvas.style.cssText = `display: none;`*/
             }
-            
         });
+    }
+     data() {
+        
+
+        let arr = [];
+        let keys = Object.keys(localStorage);
+        for(let key of keys) {
+        
+            
+            
+           
+        arr.push(`${+key.slice(0,2)},${JSON.parse(localStorage.getItem(key)).total_BYN}`.split(","));
+            
+          
+        }
+        console.log(arr);
+        this.arr = arr;
+
     }
    
      newTextWindow() {
-        const list = document.querySelector("#canvas");
-        const newDiv = document.createElement("div");
-        list.append(newDiv);
-        newDiv.setAttribute(`id`,`newCan`);
-        const newH2 = document.createElement("h3");
-        newDiv.append(newH2);
-
-        const textH2 = document.createTextNode(`ГРАФИК ИЗМЕНЕНИЯ НАКОПЛЕНИЙ ЗА`);
-        newH2.append(textH2);
-
-        const canv = document.createElement("canvas");
-        newDiv.append(canv);
+        canvas.style.cssText = ``
         this.canva();
         
     }
     canva() {
-        const canvas = document.querySelector("canvas");
+        const canvas = document.querySelector("#draw");
         const ctx = canvas.getContext(`2d`);
-        canvas.style.width = this.WIDTH + `px`;
+        canvas.style.maxwidth = this.WIDTH + `px`;
         canvas.style.height = this.HEIGHT + `px`;
-        canvas.width = this.WIDTH * 2;
-        canvas.height = this.HEIGHT * 2;
-        ctx.translate(0, canvas.height);
-        ctx.rotate(-Math.PI/2);
+        canvas.width = this.DPI_WIDTH;
+        canvas.height = this.DPI_HEIGHT;
+       
         
         this.draw(ctx);
     }
     draw(ctx) {
 
         ctx.beginPath();
+        ctx.strokeStyle = `green`;
         ctx.lineWidth = 5;
 
-        ctx.moveTo(20, 20);
-        ctx.lineTo(780, 20);        
+        ctx.moveTo(60, this.DPI_HEIGHT -60);
+        ctx.lineTo(this.DPI_WIDTH-10, this.DPI_HEIGHT -60);        
       
-        ctx.moveTo(20, 780);
-        ctx.lineTo(20, 20);
+        ctx.moveTo(60, this.DPI_HEIGHT- 780);
+        ctx.lineTo(60, this.DPI_HEIGHT- 60);
         ctx.stroke();
+        ctx.closePath();
+
+        ctx.rotate(-1.57);
+
+        ctx.font = "normal 30px Tahoma";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+         
+        ctx.fillText("БЕЛ.РУБ.", -90, 30);
+        
+        ctx.rotate(1.57);
+        ctx.fillText("ИЮНЬ", 1100, 40);
+
+        let gap = (this.DPI_WIDTH - 80) / this.columne_count;
+
+
+        ctx.beginPath();
+        ctx.strokeStyle = `#C0C0C0`;
+        ctx.font = "normal 20px Tahoma";
+        ctx.lineWidth = 2;
+    
+        let arr = this.arr;
+     function as(a,data,c) {
+        for(let i = 1; i <= a; i++) {
+            const x = gap * i;
+            ctx.fillText(i,x+60,760);
+            ctx.moveTo(x+60, 80);
+            ctx.lineTo(x+60, 730);
+
+            for(const [p, o] of data) {
+            if(i==p) {
+                ctx.fillText(p,x+60, c - (o / 2) - 60);
+            }
+        }
+        }
+        ctx.stroke();
+        ctx.closePath();
+    }
+     as(this.columne_count, arr, this.DPI_HEIGHT );
     }
 };

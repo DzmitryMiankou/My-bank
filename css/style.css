@@ -189,9 +189,17 @@ input {
     box-shadow: rgb(92, 92, 92) 0px 1px 8px;
     text-align: center;
     color: var(--color-text);
-    top:20%;
+    top:10%;
 }
 canvas {
-    border: solid black 2px;
-    background-color: rgb(194, 194, 194);
+    background-color: rgb(239, 241, 255);
+    
+    
+}
+#buttCan {
+height: 60px;
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+justify-items: center;
+align-items:center;
 }
