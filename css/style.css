@@ -179,3 +179,19 @@ input {
 #reviationadd {
     width: 60px;
 }
+
+
+
+
+#canvas {
+    position: absolute;
+    background-color:var(--main-color-backgraund);
+    box-shadow: rgb(92, 92, 92) 0px 1px 8px;
+    text-align: center;
+    color: var(--color-text);
+    top:20%;
+}
+canvas {
+    border: solid black 2px;
+    background-color: rgb(194, 194, 194);
+}

@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/reset.css" />
     <!--my script-->
-    <script src="js/script.js"></script>
+    <script type="module" src="js/script.js"></script>
   </head>
   <body>
     <div id="newForm" class="date">
@@ -71,10 +71,14 @@
         </form>
         <input readonly="readonly" id="many__end" type="text" placeholder="" />
       </div>
+
       <form class="total__information">
-        <button name="send" type="submit">ГРАФИК</button>
+        <button id="graph" name="send" type="button">ГРАФИК</button>
+
         <button name="send" type="submit">СПРАВКА</button>
+
         <button id="remember" name="send" type="button">ЗАПОМНИТЬ</button>
+        <div id="canvas"></div>
       </form>
     </div>
   </body>

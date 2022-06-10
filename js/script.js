@@ -26,7 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /*call class*/
     const date = new DateProcessing(buttons, day, formDate, textH2, textP, textButton);
-    
+    const dgf = new Graph();
+    dgf.butt();
     date.input();
     date.getButt()
     
@@ -272,4 +273,70 @@ class DateProcessing {
         };
         response();
     }
-} //The end______________________________DateProcessing______________________________________
+}; //The end______________________________DateProcessing______________________________________
+
+
+
+class Graph {
+    constructor() {
+        this.WIDTH = 400;
+        this.HEIGHT = 400;
+    }
+    butt() { 
+     window.addEventListener("click", (event) => {
+            let target = event.target;
+            switch(target.id) {
+                 case "graph"://Delete list
+                 this.newTextWindow();
+                 break;
+                 default:
+                 let f = document.querySelector(`#newCan`);
+                 if (f == null) return;
+                 f.remove();
+                
+            }
+            
+        });
+    }
+   
+     newTextWindow() {
+        const list = document.querySelector("#canvas");
+        const newDiv = document.createElement("div");
+        list.append(newDiv);
+        newDiv.setAttribute(`id`,`newCan`);
+        const newH2 = document.createElement("h3");
+        newDiv.append(newH2);
+
+        const textH2 = document.createTextNode(`ГРАФИК ИЗМЕНЕНИЯ НАКОПЛЕНИЙ ЗА`);
+        newH2.append(textH2);
+
+        const canv = document.createElement("canvas");
+        newDiv.append(canv);
+        this.canva();
+        
+    }
+    canva() {
+        const canvas = document.querySelector("canvas");
+        const ctx = canvas.getContext(`2d`);
+        canvas.style.width = this.WIDTH + `px`;
+        canvas.style.height = this.HEIGHT + `px`;
+        canvas.width = this.WIDTH * 2;
+        canvas.height = this.HEIGHT * 2;
+        ctx.translate(0, canvas.height);
+        ctx.rotate(-Math.PI/2);
+        
+        this.draw(ctx);
+    }
+    draw(ctx) {
+
+        ctx.beginPath();
+        ctx.lineWidth = 5;
+
+        ctx.moveTo(20, 20);
+        ctx.lineTo(780, 20);        
+      
+        ctx.moveTo(20, 780);
+        ctx.lineTo(20, 20);
+        ctx.stroke();
+    }
+};
