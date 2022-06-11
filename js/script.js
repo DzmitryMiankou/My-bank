@@ -306,11 +306,6 @@ let countDay = howMuchDays (date, date2 + 1);
 
 
 
-
-
-
-
-
 class Graph {
     constructor() {
         this.WIDTH = 600;
