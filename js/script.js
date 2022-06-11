@@ -280,9 +280,9 @@ class DateProcessing {
         response();
     }
 }; //The end______________________________DateProcessing______________________________________
-/*
+
 const canvas = document.querySelector("#canvas");
-canvas.style.cssText = `display: none;`*/
+canvas.style.cssText = `display: none;`
 
 
 
@@ -336,7 +336,7 @@ class Graph {
      data() {
         
 
-        let arr = [];
+        let arr = [[`0`,`0`]];
         let keys = Object.keys(localStorage);
         for(let key of keys) {
         
@@ -347,7 +347,7 @@ class Graph {
             
           
         }
-        console.log(arr);
+        
         this.arr = arr;
 
     }
@@ -400,24 +400,37 @@ class Graph {
         ctx.strokeStyle = `#C0C0C0`;
         ctx.font = "normal 20px Tahoma";
         ctx.lineWidth = 2;
-    
+
+        ctx.closePath();
+        ctx.beginPath();
+     
         let arr = this.arr;
-     function as(a,data,c) {
+     function as(a,data,c, d) {
         for(let i = 1; i <= a; i++) {
             const x = gap * i;
             ctx.fillText(i,x+60,760);
             ctx.moveTo(x+60, 80);
             ctx.lineTo(x+60, 730);
 
+
             for(const [p, o] of data) {
+                
             if(i==p) {
-                ctx.fillText(p,x+60, c - (o / 2) - 60);
-            }
-        }
-        }
+                let r = (o / 4);
+                
+                ctx.fillText(Math.round(o),x+60, c - (o / 4) - 80);
+                ctx.rect(x+50, c -  (o / 4) - 62.4, 20, r);
+                ctx.fillStyle = 'green';
+                ctx.fill();            
+            };
+            
+           }
+           
+        };
+
         ctx.stroke();
         ctx.closePath();
     }
-     as(this.columne_count, arr, this.DPI_HEIGHT );
+     as(this.columne_count, arr, this.DPI_HEIGHT, this.DPI_WIDTH);
     }
 };
