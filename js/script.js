@@ -241,7 +241,8 @@ class DateProcessing {
             total_BYN: arr[0],
         };
         /*this.arr.push(student);*/
-        localStorage.setItem(`${dateSrc}`,JSON.stringify(student));
+       localStorage.setItem(`${dateSrc}`,JSON.stringify(student));
+      
         };       
     }
     oldDay(a) {
@@ -402,16 +403,23 @@ class Graph {
         ctx.lineWidth = 2;
 
         ctx.closePath();
+ 
         ctx.beginPath();
-     
+
+        ctx.lineCap = `round`;
         let arr = this.arr;
-     function as(a,data,c, d) {
+     function as(a,data,c) {
         for(let i = 1; i <= a; i++) {
+            ctx.strokeStyle = `red`;
             const x = gap * i;
             ctx.fillText(i,x+60,760);
-            ctx.moveTo(x+60, 80);
-            ctx.lineTo(x+60, 730);
+            ctx.moveTo(x+60, 730);
+            ctx.lineTo(x+60, 740);
 
+            ctx.shadowOffsetX = 1;
+            ctx.shadowOffsetY = 2;
+            ctx.shadowBlur = 4;
+            ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
 
             for(const [p, o] of data) {
                 
@@ -419,18 +427,27 @@ class Graph {
                 let r = (o / 4);
                 
                 ctx.fillText(Math.round(o),x+60, c - (o / 4) - 80);
-                ctx.rect(x+50, c -  (o / 4) - 62.4, 20, r);
-                ctx.fillStyle = 'green';
-                ctx.fill();            
+
+                ctx.fillStyle = '#DEB887';
+            
+                ctx.fillRect(x+50, c -  (o / 4) - 64, 20, r);
+
+                ctx.fill();                            
             };
+           
             
            }
            
+           ctx.fillStyle = 'green';
+           
         };
 
+        
+
         ctx.stroke();
+        
         ctx.closePath();
     }
-     as(this.columne_count, arr, this.DPI_HEIGHT, this.DPI_WIDTH);
+     as(this.columne_count, arr, this.DPI_HEIGHT);
     }
 };
