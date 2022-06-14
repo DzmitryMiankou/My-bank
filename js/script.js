@@ -242,6 +242,7 @@ class DateProcessing {
         };
         /*this.arr.push(student);*/
        localStorage.setItem(`${dateSrc}`,JSON.stringify(student));
+       
       
         };       
     }
@@ -324,8 +325,11 @@ class Graph {
                  case "graph"://Delete list
                  this.newTextWindow();
                  break;
-                 default:
-                 /*canvas.style.cssText = `display: none;`*/
+                 default: 
+                 if(target.querySelector(`#canvas`)) {
+                 canvas.style.cssText = `display: none;`
+                 }
+                 return;
             }
         });
     }
