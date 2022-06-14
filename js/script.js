@@ -321,18 +321,18 @@ class Graph {
     butt() { 
      window.addEventListener("click", (event) => {
             let target = event.target;
-            switch(target.id) {
-                 case "graph"://Delete list
-                 this.newTextWindow();
-                 break;
-                 default: 
-                 if(target.querySelector(`#canvas`)) {
-                 canvas.style.cssText = `display: none;`
-                 }
-                 return;
-            }
-        });
+    
+            if (document.querySelector(`#graph`) === target) {
+                    this.newTextWindow();
+                 };
+                 console.log(target);
+             if(document.querySelector(`body`) == target) {
+                 canvas.style.cssText = `display: none;`;
+                 };
+                
+       });
     }
+    
      data() {
         
 
