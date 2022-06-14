@@ -318,24 +318,24 @@ class Graph {
     }
    
     butt() { 
-         let hamburger = document.querySelector('#graph');
-         let menu = document.querySelector('#canvas');
+         let button = document.querySelector('#graph');
+         let newWind = document.querySelector('#canvas');
        
-        const toggleMenu = () => {
+        const togglenewWind = () => {
             this.newTextWindow();
-            menu.classList.toggle('active');
+            newWind.classList.toggle('active');
         }
-        hamburger.addEventListener('click', e => {
+        button.addEventListener('click', e => {
             e.stopPropagation();
-            toggleMenu();
+            togglenewWind();
         })
         document.addEventListener('click', e => {
             let target = e.target;
-            let its_menu = target == menu || menu.contains(target);
-            let its_hamburger = target == hamburger;
-            let menu_is_active = menu.classList.contains('active');
-            if (!its_menu && !its_hamburger && menu_is_active) {
-                toggleMenu();
+            let its_newWind = target == newWind || newWind.contains(target);
+            let its_button = target == button;
+            let newWind_is_active = newWind.classList.contains('active');
+            if (!its_newWind && !its_button && newWind_is_active) {
+                togglenewWind();
             }
         })
     }
@@ -421,14 +421,10 @@ class Graph {
             ctx.strokeStyle = `red`;
             
             const x = gap * i;
+            
             ctx.fillText(i,x+60,760);
             ctx.moveTo(x+60, 730);
-            ctx.lineTo(x+60, 740);
-
-            
-           
-           
-            
+            ctx.lineTo(x+60, 740);           
 
             for(const [p, o] of data) {
                 
@@ -436,14 +432,14 @@ class Graph {
                 
             if(i==p) {
                
-                let r = (o / 4);
-            
-                ctx.fillText(Math.round(o),x+60, c - (o / 4) - 80);
-             ctx.fillStyle = '#DEB887';
-             ctx.shadowColor = "rgba(0, 0, 0, 11)";
-             ctx.shadowOffsetX = 5;
-            ctx.shadowOffsetY = 2;
-            ctx.shadowBlur = 7;
+                
+                ctx.fillStyle = '#DEB887';
+                let r = (o / 4);            
+                ctx.fillText(Math.round(o),x+60, c - (o / 4) - 80);                
+                ctx.shadowColor = "rgba(0, 0, 0, 11)";
+                ctx.shadowOffsetX = 5;
+                ctx.shadowOffsetY = 2;
+                ctx.shadowBlur = 7;
                 ctx.fillRect(x+50, c -  (o / 4) - 64, 20, r);
 
                 ctx.fill();                            
@@ -451,8 +447,8 @@ class Graph {
            
             
            }
-           
            ctx.fillStyle = 'green';
+           
            
         };
 
