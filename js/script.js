@@ -283,8 +283,7 @@ class DateProcessing {
     }
 }; //The end______________________________DateProcessing______________________________________
 
-const canvas = document.querySelector("#canvas");
-canvas.style.cssText = `display: none;`
+
 
 
 
@@ -319,18 +318,29 @@ class Graph {
     }
    
     butt() { 
-     window.addEventListener("click", (event) => {
-            let target = event.target;
-    
-            if (document.querySelector(`#graph`) === target) {
-                    this.newTextWindow();
-                 };
-                 console.log(target);
-             if(document.querySelector(`body`) == target) {
-                 canvas.style.cssText = `display: none;`;
-                 };
-                
-       });
+         let hamburger = document.querySelector('.graph');
+         let menu = document.querySelector('.canvas');
+       
+const toggleMenu = () => {
+    this.newTextWindow();
+  menu.classList.toggle('active');
+}
+
+hamburger.addEventListener('click', e => {
+  e.stopPropagation();
+  toggleMenu();
+});
+
+document.addEventListener('click', e => {
+  let target = e.target;
+  let its_menu = target == menu || menu.contains(target);
+  let its_hamburger = target == hamburger;
+  let menu_is_active = menu.classList.contains('active');
+  
+  if (!its_menu && !its_hamburger && menu_is_active) {
+    toggleMenu();
+  }
+})
     }
     
      data() {
@@ -353,7 +363,6 @@ class Graph {
     }
    
      newTextWindow() {
-        canvas.style.cssText = ``
         this.canva();
         
     }
@@ -450,3 +459,7 @@ class Graph {
      as(this.columne_count, arr, this.DPI_HEIGHT);
     }
 };
+
+
+
+

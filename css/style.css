@@ -184,6 +184,7 @@ input {
 
 
 #canvas {
+   
     position: absolute;
     background-color:var(--main-color-backgraund);
     box-shadow: rgb(92, 92, 92) 0px 1px 8px;
@@ -193,8 +194,13 @@ input {
 }
 canvas {
     background-color: rgb(239, 241, 255);
+   
     
     
+}
+
+.canvas {
+display: none;
 }
 #buttCan {
 height: 60px;
@@ -203,3 +209,10 @@ grid-template-columns: 1fr 1fr 1fr;
 justify-items: center;
 align-items:center;
 }
+
+.active {
+    display: block;
+}
+
+
+
