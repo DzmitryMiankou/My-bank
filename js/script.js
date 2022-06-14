@@ -62,7 +62,7 @@ class DateProcessing {
                 case "date"://check date
                 this.checkDay();
                     break;
-                case "reviationadd"://Ввод курса
+                case "reviationadd"://Ввод курс
                 this.checkManey(event);
                     break;
                 case "text"://Ввод суммы
@@ -318,31 +318,27 @@ class Graph {
     }
    
     butt() { 
-         let hamburger = document.querySelector('.graph');
-         let menu = document.querySelector('.canvas');
+         let hamburger = document.querySelector('#graph');
+         let menu = document.querySelector('#canvas');
        
-const toggleMenu = () => {
-    this.newTextWindow();
-  menu.classList.toggle('active');
-}
-
-hamburger.addEventListener('click', e => {
-  e.stopPropagation();
-  toggleMenu();
-});
-
-document.addEventListener('click', e => {
-  let target = e.target;
-  let its_menu = target == menu || menu.contains(target);
-  let its_hamburger = target == hamburger;
-  let menu_is_active = menu.classList.contains('active');
-  
-  if (!its_menu && !its_hamburger && menu_is_active) {
-    toggleMenu();
-  }
-})
+        const toggleMenu = () => {
+            this.newTextWindow();
+            menu.classList.toggle('active');
+        }
+        hamburger.addEventListener('click', e => {
+            e.stopPropagation();
+            toggleMenu();
+        })
+        document.addEventListener('click', e => {
+            let target = e.target;
+            let its_menu = target == menu || menu.contains(target);
+            let its_hamburger = target == hamburger;
+            let menu_is_active = menu.classList.contains('active');
+            if (!its_menu && !its_hamburger && menu_is_active) {
+                toggleMenu();
+            }
+        })
     }
-    
      data() {
         
 
@@ -350,9 +346,6 @@ document.addEventListener('click', e => {
         let keys = Object.keys(localStorage);
         for(let key of keys) {
         
-            
-            
-           
         arr.push(`${+key.slice(0,2)},${JSON.parse(localStorage.getItem(key)).total_BYN}`.split(","));
             
           
@@ -378,6 +371,7 @@ document.addEventListener('click', e => {
         this.draw(ctx);
     }
     draw(ctx) {
+         
 
         ctx.beginPath();
         ctx.strokeStyle = `green`;
@@ -390,8 +384,10 @@ document.addEventListener('click', e => {
         ctx.lineTo(60, this.DPI_HEIGHT- 60);
         ctx.stroke();
         ctx.closePath();
+      
 
         ctx.rotate(-1.57);
+       
 
         ctx.font = "normal 30px Tahoma";
         ctx.textAlign = "center";
@@ -407,8 +403,9 @@ document.addEventListener('click', e => {
 
         ctx.beginPath();
         ctx.strokeStyle = `#C0C0C0`;
-        ctx.font = "normal 20px Tahoma";
+        ctx.font = "normal 24px Tahoma";
         ctx.lineWidth = 2;
+        
 
         ctx.closePath();
  
@@ -417,27 +414,36 @@ document.addEventListener('click', e => {
         ctx.lineCap = `round`;
         let arr = this.arr;
      function as(a,data,c) {
+        
         for(let i = 1; i <= a; i++) {
+            ctx.shadowColor = "rgba(0, 0, 0, 0)";
+            
             ctx.strokeStyle = `red`;
+            
             const x = gap * i;
             ctx.fillText(i,x+60,760);
             ctx.moveTo(x+60, 730);
             ctx.lineTo(x+60, 740);
 
-            ctx.shadowOffsetX = 1;
-            ctx.shadowOffsetY = 2;
-            ctx.shadowBlur = 4;
-            ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+            
+           
+           
+            
 
             for(const [p, o] of data) {
                 
-            if(i==p) {
-                let r = (o / 4);
                 
-                ctx.fillText(Math.round(o),x+60, c - (o / 4) - 80);
-
-                ctx.fillStyle = '#DEB887';
+                
+            if(i==p) {
+               
+                let r = (o / 4);
             
+                ctx.fillText(Math.round(o),x+60, c - (o / 4) - 80);
+             ctx.fillStyle = '#DEB887';
+             ctx.shadowColor = "rgba(0, 0, 0, 11)";
+             ctx.shadowOffsetX = 5;
+            ctx.shadowOffsetY = 2;
+            ctx.shadowBlur = 7;
                 ctx.fillRect(x+50, c -  (o / 4) - 64, 20, r);
 
                 ctx.fill();                            
@@ -455,6 +461,7 @@ document.addEventListener('click', e => {
         ctx.stroke();
         
         ctx.closePath();
+        
     }
      as(this.columne_count, arr, this.DPI_HEIGHT);
     }
