@@ -92,15 +92,14 @@ class DateProcessing {
                     this.remember(this.promis);
                     break;
                 case "usd"://Delete list
-                document.querySelector(`#usd`).style.cssText = `
-                background-color: thistle;`
                 let s = `USD`;
                     this.countCur(s);
+                    document.querySelector(`#usd`).classList.toggle(`butt`);
                     break;
                 case "eur"://Delete list
-                document.querySelector(`#usd`).style.cssText = ``;
                     let f = `EUR`;
                     this.countCur(f);
+                    document.querySelector(`#eur`).classList.toggle(`butt1`);
                     break;
                 case "curbyn"://Delete list
                     document.querySelector("#many__end").value = document.querySelector("#byn").value;
@@ -263,7 +262,7 @@ class DateProcessing {
        let CurOfficial = json.CurOfficial;
        this.arr = [byn, usd, eur];
     }
-    countCur(a) {
+   countCur(a) {
         async  function response() {
             try {
                 const listPromis = await fetch(`https://www.nbrb.by/api/exrates/rates?periodicity=0`);
@@ -281,6 +280,7 @@ class DateProcessing {
         };
         response();
     }
+
 }; //The end______________________________DateProcessing______________________________________
 
 
@@ -464,5 +464,26 @@ class Graph {
 };
 
 
-
+/*
+    let button = document.querySelector('#graph');
+         let newWind = document.querySelector('#canvas');
+       
+        const togglenewWind = () => {
+            this.newTextWindow();
+            newWind.classList.toggle('active');
+        }
+        button.addEventListener('click', e => {
+            e.stopPropagation();
+            togglenewWind();
+        })
+        document.addEventListener('click', e => {
+            let target = e.target;
+            let its_newWind = target == newWind || newWind.contains(target);
+            let its_button = target == button;
+            let newWind_is_active = newWind.classList.contains('active');
+            if (!its_newWind && !its_button && newWind_is_active) {
+                togglenewWind();
+            }
+        })
+*/
 
