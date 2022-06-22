@@ -92,20 +92,36 @@ class DateProcessing {
                     this.remember(this.promis);
                     break;
                 case "usd"://Delete list
-                let s = `USD`;
+                    let s = `USD`;
                     this.countCur(s);
-                    document.querySelector(`#usd`).classList.toggle(`butt`);
+                    this.but(target);
                     break;
                 case "eur"://Delete list
                     let f = `EUR`;
                     this.countCur(f);
-                    document.querySelector(`#eur`).classList.toggle(`butt1`);
+                    this.but(target);
                     break;
                 case "curbyn"://Delete list
                     document.querySelector("#many__end").value = document.querySelector("#byn").value;
+                    this.but(target);
                     break;
             };
         });
+    }
+    but(target) {
+
+        const parentElm = target.closest('button');
+        console.log(parentElm);
+        let l = parentElm.classList.toggle(`butt`);
+        if (target !== parentElm) {
+            parentElm.classList.remove(`butt`);
+         
+}
+        /*classList.toggle(`butt`);*/
+       
+
+            
+
     }
     checkDay() {
         const inputDay = this.formDate.elements["date"].value;
@@ -285,7 +301,9 @@ class DateProcessing {
 
 
 
+let m = new Date().getMonth()+1;
 
+console.log(m);
 
 let date = new Date().getFullYear();
 let date2 = new Date().getMonth();
@@ -294,9 +312,9 @@ let date2 = new Date().getMonth();
 
 function howMuchDays ( year , month) {
 
-var date1 = new Date(year, month-1, 1);
+let date1 = new Date(year, month-1, 1);
 
-var date2 = new Date(year, month, 1);
+let date2 = new Date(year, month, 1);
 
 return Math.round((date2 - date1) / 1000 / 3600 / 24);
 
@@ -343,12 +361,18 @@ class Graph {
         
 
         let arr = [[`0`,`0`]];
-        let keys = Object.keys(localStorage);
-        for(let key of keys) {
         
-        arr.push(`${+key.slice(0,2)},${JSON.parse(localStorage.getItem(key)).total_BYN}`.split(","));
-            
-          
+        let keys = Object.keys(localStorage);
+        
+
+
+        for(let key of keys) {
+        if (m == key.slice(4,5)) {
+            arr.push(`${+key.slice(0,2)},${JSON.parse(localStorage.getItem(key)).total_BYN}`.split(","));
+        }
+        else {
+           arr.push(``,``);
+        } 
         }
         
         this.arr = arr;
