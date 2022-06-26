@@ -110,14 +110,7 @@ class DateProcessing {
     }
     but(target) {
 
-        const parentElm = target.closest('button');
-        console.log(parentElm);
-        let l = parentElm.classList.toggle(`butt`);
-        if (target !== parentElm) {
-            parentElm.classList.remove(`butt`);
-         
-}
-        /*classList.toggle(`butt`);*/
+ 
        
 
             
@@ -491,5 +484,11 @@ class Graph {
 
 
 
-
+       const buttons = document.querySelectorAll('.total__end-button button')
+for(let i = 0; i < buttons.length; i++){
+  buttons[i].onclick = function(){
+    [...buttons].forEach((el) => el.classList.remove('butt')); //убираем класс
+    this.classList.add('butt')
+  }
+}
 
