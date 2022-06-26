@@ -321,6 +321,8 @@ return Math.round((date2 - date1) / 1000 / 3600 / 24);
 } 
 let countDay = howMuchDays (date, date2 + 1);
 
+const hgg=['Январь','Февраль','Март','Апрель','Май',
+'Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь',];
 
 
 
@@ -420,7 +422,7 @@ class Graph {
         ctx.fillText("БЕЛ.РУБ.", -90, 30);
         
         ctx.rotate(1.57);
-        ctx.fillText("ИЮНЬ", 1100, 40);
+        ctx.fillText(hgg[m-1], 1100, 40);
 
         let gap = (this.DPI_WIDTH - 80) / this.columne_count;
 
@@ -488,26 +490,6 @@ class Graph {
 };
 
 
-/*
-    let button = document.querySelector('#graph');
-         let newWind = document.querySelector('#canvas');
-       
-        const togglenewWind = () => {
-            this.newTextWindow();
-            newWind.classList.toggle('active');
-        }
-        button.addEventListener('click', e => {
-            e.stopPropagation();
-            togglenewWind();
-        })
-        document.addEventListener('click', e => {
-            let target = e.target;
-            let its_newWind = target == newWind || newWind.contains(target);
-            let its_button = target == button;
-            let newWind_is_active = newWind.classList.contains('active');
-            if (!its_newWind && !its_button && newWind_is_active) {
-                togglenewWind();
-            }
-        })
-*/
+
+
 
