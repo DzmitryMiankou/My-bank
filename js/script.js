@@ -26,16 +26,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /*call class*/
     const date = new DateProcessing(buttons, day, formDate, textH2, textP, textButton);
-    const dgf = new Graph();
-    dgf.butt();
-     dgf.data();
-    dgf.canva();
+    date.but();
+    date.input();
+    date.getButt();
+
+    const canvas = new Graph();
+    canvas.butt();
+    canvas.data();
+    canvas.canva();
     
    
 
 
-    date.input();
-    date.getButt()
+   
     
 
 });//The end_________________________DOMContentLoaded______________________________________
@@ -51,7 +54,6 @@ class DateProcessing {
         this.textH2 = textH2;
         this.textP = textP;
         this.textButton = textButton;
-        this.arr = [];
         this.promis;
     }
      input() { 
@@ -94,24 +96,26 @@ class DateProcessing {
                 case "usd"://Delete list
                     let s = `USD`;
                     this.countCur(s);
-                    this.but(target);
                     break;
                 case "eur"://Delete list
                     let f = `EUR`;
                     this.countCur(f);
-                    this.but(target);
                     break;
                 case "curbyn"://Delete list
                     document.querySelector("#many__end").value = document.querySelector("#byn").value;
-                    this.but(target);
                     break;
             };
         });
     }
-    but(target) {
-
- 
-       
+    but() {
+         const buttons = document.querySelectorAll('.total__end-button button');
+         for(let i = 0; i < buttons.length; i++)
+         {
+         buttons[i].onclick = function(){
+              [...buttons].forEach((el) => el.classList.remove('butt')); //убираем класс
+               this.classList.add('butt');
+            }
+         }
 
             
 
@@ -188,7 +192,6 @@ class DateProcessing {
         if (!event.target.closest('.new__Element')) {  
             const add = document.querySelector(".money__money");
             add.querySelectorAll("form > input").forEach(el=>el.value = '');
-            document.querySelector("#many__end").value = '';
             return;                  
         };
         const deleteElm = event.target.closest('.new__Element');
@@ -264,12 +267,6 @@ class DateProcessing {
        document.querySelector("#kurs").value = json.CurOfficial;
        document.querySelector("#byn").value = json.total_BYN;
        document.querySelector("#many__end").value = json.total_BYN;
-       
-       let byn = json.total_BYN;
-       let inputMoney = json.inputMoney;
-       let Cur_Abbreviation = json.Cur_Abbreviation;
-       let CurOfficial = json.CurOfficial;
-       this.arr = [byn, usd, eur];
     }
    countCur(a) {
         async  function response() {
@@ -296,7 +293,6 @@ class DateProcessing {
 
 let m = new Date().getMonth()+1;
 
-console.log(m);
 
 let date = new Date().getFullYear();
 let date2 = new Date().getMonth();
@@ -484,11 +480,5 @@ class Graph {
 
 
 
-       const buttons = document.querySelectorAll('.total__end-button button')
-for(let i = 0; i < buttons.length; i++){
-  buttons[i].onclick = function(){
-    [...buttons].forEach((el) => el.classList.remove('butt')); //убираем класс
-    this.classList.add('butt')
-  }
-}
+
 
